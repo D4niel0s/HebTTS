@@ -1,14 +1,17 @@
-import torch, torchaudio, librosa, os, whisper, numpy as np
+import torch, torchaudio, librosa, os, whisper, numpy as np, sys
 
 from datasets import load_dataset
 from silero_vad import load_silero_vad, read_audio, get_speech_timestamps
 
-
+verbose = False
+if sys.argv[1] == 'verbose':
+    verbose = True
 
 
 data = load_dataset("SLPRL-HUJI/HebDB", "DK_raw", streaming=True)
 torch_train = data['train'].with_format("torch")
 
+if verbose: print('Loaded data')
 
 # This is a fucked up way to grab the first element in torch_train. torch_train[0] is an error
 for i in torch_train:
@@ -19,6 +22,7 @@ for i in torch_train:
 audio = res['audio']['array']
 sr = res['audio']['sampling_rate'].item()
 
+if verbose: print(f'Got first sample, {sr=}')
 
 # Resample to 16KHz
 res_librosa = librosa.resample(audio.detach().numpy(), orig_sr=sr, target_sr=16000)
@@ -33,6 +37,7 @@ speech_timestamps = get_speech_timestamps(
   return_seconds=True,
 )
 
+if verbose: print(f'Did VAD using silero')
 
 #Filter out irrelevant (too short) segments, and merge segments with too little silence gap in-between
 MIN_DURATION = 1.5  # seconds
@@ -62,6 +67,9 @@ for seg in valid_segments:
 
 
 
+if verbose: print(f'Got merged segments')
+
+
 # Grab enrollment (4 prev seconds) for each valid segment, transcribe, and save files
 MIN_ACTIVITY_FOR_ENROLL = 3
 PAD = 0.03
@@ -79,6 +87,9 @@ vad_model = load_silero_vad()
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 whisper_model.to(device)
 
+if verbose: print(f'Loaded whisper, {device=}')
+
+num_samples = 0
 for i, seg in enumerate(merged_segments):
     start_sample = int(seg['start'] * sr)
     end_sample   = int(seg['end'] * sr)
@@ -97,25 +108,30 @@ for i, seg in enumerate(merged_segments):
     # We want this segment only if we have an enrollment for it
     if speech_time_in_prev_4_sec >= MIN_ACTIVITY_FOR_ENROLL:
 
-        while segment_waveform.ndim > 1:
-            segment_waveform = segment_waveform.squeeze(0)
+        if verbose: print(f'Found relevant sample')
 
         result = whisper_model.transcribe(segment_waveform, language="he")  # specify Hebrew if needed
 
         with open('data.txt', 'a') as output_data:
-            output_data.write(output_dir+f'/target_{i}.wav'+'\t<SEP>\t'+result['text']+'\t<SEP>\t'+output_dir+f'/enrollment_{i}.wav'+'\n')
+            output_data.write(output_dir+f'/target_{num_samples}.wav'+'\t<SEP>\t'+result['text']+'\t<SEP>\t'+output_dir+f'/enrollment_{num_samples}.wav'+'\n')
 
 
         # Save target audio to synthesize, and the enrollment
         if segment_waveform.ndim == 1:
             segment_waveform = segment_waveform.unsqueeze(0)
-        torchaudio.save(output_dir+f'/target_{i}.wav', segment_waveform, sr)
+        torchaudio.save(output_dir+f'/target_{num_samples}.wav', segment_waveform, sr)
 
-        enroll = torch.cat((silence, torch.tensor(previous_4_sec), silence))
+        # Adding a bit of noise to the enrollment length, to introduce wider dist.
+        jitter1 = np.random.choice(int(sr * 0.5))
+        jitter2 = np.random.choice(int(sr * 0.5))
+        enroll = torch.cat((silence, torch.tensor(previous_4_sec[jitter1: (4*sr) - jitter2]), silence))
+
         if enroll.ndim == 1:
             enroll = enroll.unsqueeze(0)
+        torchaudio.save(output_dir+f'/enrollment_{num_samples}.wav', enroll, sr)
 
-        torchaudio.save(output_dir+f'/enrollment_{i}.wav', enroll, sr)
-
+        if verbose: print(f'Added sample No.{num_samples}')
+        
+        num_samples += 1
     else:
         continue
