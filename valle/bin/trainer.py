@@ -878,7 +878,7 @@ def run(rank, world_size, args):
         notes=f"{args}",
         # track hyperparameters and run metadata
         config={
-            'data': "libriTTS",
+            "data": "libriTTS",
             "train stage": args.train_stage,
             "text_token": args.text_tokens,
             "audio_token": args.audio_tokens,
