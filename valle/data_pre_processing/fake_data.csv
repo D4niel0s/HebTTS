@@ -1,0 +1,7 @@
+id, path                , duration, transcript         , speaker
+ 1, fake_data/shahar.wav,      3.0, אני מאוד מכיר את זה, shahar
+ 2, fake_data/shaul.wav ,      5.0, אני מאוד מכיר את זה, shaul
+ 3, fake_data/shahar.wav,      3.0, אני מאוד מכיר את זה, shahar
+ 4, fake_data/shaul.wav ,      5.0, אני מאוד מכיר את זה, shaul
+ 5, fake_data/shahar.wav,      3.0, אני מאוד מכיר את זה, shahar
+ 6, fake_data/shaul.wav ,      5.0, אני מאוד מכיר את זה, shaul
