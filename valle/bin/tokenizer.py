@@ -35,7 +35,6 @@ from tqdm.auto import tqdm
 from valle.data import (
     AudioTokenConfig,
     AudioTokenConfigDac,
-    DacAudioTokenizer,
     AudioTokenExtractor,
     TextTokenizer,
     tokenize_text,
@@ -147,8 +146,7 @@ def main():
         if args.audio_extractor == "Encodec":
             audio_extractor = AudioTokenExtractor(AudioTokenConfig())
         elif args.audio_extractor.lower() == "dac":
-            audio_extractor = AudioTokenExtractor(AudioTokenConfigDac(), audio_tokenizer=DacAudioTokenizer)
-
+            exit()
         else:
             assert args.audio_extractor == "Fbank"
             audio_extractor = get_fbank_extractor()
