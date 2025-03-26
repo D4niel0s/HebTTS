@@ -40,7 +40,6 @@ from icefall.utils import AttributeDict, str2bool
 
 from valle.data import (
     AudioTokenizer,
-    DacAudioTokenizer,
     TextTokenizer,
     tokenize_audio,
     tokenize_text,
@@ -179,9 +178,7 @@ def main():
         print("using encodec")
         audio_tokenizer = AudioTokenizer()
     else:
-        assert args.audio_tokenizer == "dac"
-        print("using dac")
-        audio_tokenizer = DacAudioTokenizer()
+        exit()
 
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
