@@ -55,6 +55,7 @@ for episode in torch_train:
     #Filter out irrelevant (too short) segments, and merge segments with too little silence gap in-between
     MIN_DURATION = 2  # seconds
     SILENCE_GAP = 0.1   # 100 ms
+    # TODO: Remove filtering by duration. Already done in trainer.py. They chose 0.6-20 seconds.
 
     sr = 16000
 

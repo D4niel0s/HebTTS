@@ -1,5 +1,5 @@
-from lhotse import Recording, RecordingSet, SupervisionSegment, SupervisionSet
-
+from lhotse import Recording, RecordingSet, SupervisionSegment, SupervisionSet, AudioSource
+import pandas as pd
 
 def load_daniels_shitty_csv(path):
     df = pd.read_csv(path)
@@ -7,23 +7,16 @@ def load_daniels_shitty_csv(path):
 
 
 def main():
-    df = load_daniels_shitty_csv('fake_data.csv')
-    print(df)
-    exit()
+    df = load_daniels_shitty_csv('./fake_data.csv')
     sample_rate = 16000
 
-    recordings = [Recording(
-            id = row['id'],
-            sources = [{"type": "file", "source": row['path'], "channels": [0]}],
+    recording_set = RecordingSet.from_recordings(Recording(
+            id = str(row['id']),  # Convert id to string to be safe
+            sources = [AudioSource(type = "file", channels = [0], source = row['path'])], # Use channels instead of channel_ids
             sampling_rate = sample_rate,
-            num_samples = row['duration'] * sample_rate,   # e.g., 3 seconds * 16000 samples/sec
+            num_samples = int(row['duration'] * sample_rate),   # e.g., 3 seconds * 16000 samples/sec
             duration = row['duration'],
-        ) for _, row in df.iterrows()]
-
-    # Create a supervision segment for the utterance.
-
-
-    recording_set = RecordingSet.from_recordings(recordings)
+        ) for _, row in df.iterrows())
 
     recording_set.to_file("recordings.jsonl")
     # Create a SupervisionSet and save it.
@@ -38,3 +31,6 @@ def main():
     ) for _, row in df.iterrows()]
     supervision_set = SupervisionSet.from_segments(supervisions)
     supervision_set.to_file("supervisions.jsonl")
+    
+if __name__ == "__main__":
+    main()
