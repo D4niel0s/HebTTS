@@ -1,4 +1,4 @@
-from lhotse import Recording, RecordingSet, SupervisionSegment, SupervisionSet, AudioSource
+from lhotse import Recording, RecordingSet, SupervisionSegment, SupervisionSet, AudioSource, CutSet
 import pandas as pd
 
 def load_daniels_shitty_csv(path):
@@ -31,6 +31,13 @@ def main():
     ) for _, row in df.iterrows()]
     supervision_set = SupervisionSet.from_segments(supervisions)
     supervision_set.to_file("supervisions.jsonl")
+    
+    cutSet = CutSet.from_manifests(
+        recordings=recording_set,
+        supervisions=supervision_set,
+    )
+    
+    cutSet.to_file("cuts.jsonl.gz")
     
 if __name__ == "__main__":
     main()
