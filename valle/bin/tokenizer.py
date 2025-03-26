@@ -116,13 +116,9 @@ def main():
     dataset_parts = args.dataset_parts.replace("--dataset-parts", "").strip()
     if dataset_parts == "all":  # LibriTTS
         dataset_parts = [
-            "dev-clean",
-            "dev-other",
-            "test-clean",
-            "test-other",
-            "train-clean-100",
-            "train-clean-360",
-            "train-other-500",
+            "dev",
+            "test",
+            "train"
         ]
     else:
         dataset_parts = dataset_parts.replace("-p", "").strip().split(" ")
