@@ -93,9 +93,9 @@ def main():
             supervisions=part_supervision_set,
         )
         
-        part_cut_set.to_json(f"{args.dest_path}/{prefix}_cuts_{part}.jsonl.gz")
-        part_recording_set.to_json(f"{args.dest_path}/{prefix}_recordings_{part}.jsonl.gz")
-        part_supervision_set.to_json(f"{args.dest_path}/{prefix}_supervisions_{part}.jsonl.gz")
+        part_cut_set.to_file(f"{args.dest_path}/{prefix}_cuts_{part}.jsonl.gz")
+        part_recording_set.to_file(f"{args.dest_path}/{prefix}_recordings_{part}.jsonl.gz")
+        part_supervision_set.to_file(f"{args.dest_path}/{prefix}_supervisions_{part}.jsonl.gz")
     
 if __name__ == "__main__":
     main()
