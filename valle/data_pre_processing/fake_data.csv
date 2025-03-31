@@ -1,7 +1,21 @@
 id,path,duration,transcript,speaker
- 1, fake_data/shahar.wav,      3.0, אני מאוד מכיר את זה, shahar
- 2, fake_data/shaul.wav ,      5.0, אני מאוד מכיר את זה, shaul
- 3, fake_data/shahar.wav,      3.0, אני מאוד מכיר את זה, shahar
- 4, fake_data/shaul.wav ,      5.0, אני מאוד מכיר את זה, shaul
- 5, fake_data/shahar.wav,      3.0, אני מאוד מכיר את זה, shahar
- 6, fake_data/shaul.wav ,      5.0, אני מאוד מכיר את זה, shaul
+ 1, fake_data/shahar.wav,3.0, אני מאוד מכיר את זה, shahar
+ 2, fake_data/shaul.wav,5.0, אני מאוד מכיר את זה, shaul
+ 3, fake_data/shahar.wav,3.0, אני מאוד מכיר את זה, shahar
+ 4, fake_data/shaul.wav,5.0, אני מאוד מכיר את זה, shaul
+ 5, fake_data/shahar.wav,3.0, אני מאוד מכיר את זה, shahar
+ 6, fake_data/shaul.wav,5.0, אני מאוד מכיר את זה, shaul
+ 7, fake_data/shahar.wav,3.0, אני מאוד מכיר את זה, shahar
+ 8, fake_data/shaul.wav,5.0, אני מאוד מכיר את זה, shaul
+ 9, fake_data/shahar.wav,3.0, אני מאוד מכיר את זה, shahar
+ 10, fake_data/shaul.wav,5.0, אני מאוד מכיר את זה, shaul
+ 11, fake_data/shahar.wav,3.0, אני מאוד מכיר את זה, shahar
+ 12, fake_data/shaul.wav,5.0, אני מאוד מכיר את זה, shaul
+ 13, fake_data/shahar.wav,3.0, אני מאוד מכיר את זה, shahar
+ 14, fake_data/shaul.wav,5.0, אני מאוד מכיר את זה, shaul
+ 15, fake_data/shahar.wav,3.0, אני מאוד מכיר את זה, shahar
+ 16, fake_data/shaul.wav,5.0, אני מאוד מכיר את זה, shaul
+ 17, fake_data/shahar.wav,3.0, אני מאוד מכיר את זה, shahar
+ 18, fake_data/shaul.wav,5.0, אני מאוד מכיר את זה, shaul
+ 19, fake_data/shahar.wav,3.0, אני מאוד מכיר את זה, shahar
+ 20, fake_data/shaul.wav,5.0, אני מאוד מכיר את זה, shaul
