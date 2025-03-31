@@ -2,6 +2,29 @@ from lhotse import Recording, RecordingSet, SupervisionSegment, SupervisionSet, 
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+import argparse
+
+def get_args():
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+
+    parser.add_argument(
+        "--src-path",
+        type=str,
+        default='fake_data.csv',
+        help="Path to source csv.",
+    )
+
+    parser.add_argument(
+        "--dest-path",
+        type=str,
+        default='.',
+        help="Path to save the manifests.",
+    )
+
+    return parser.parse_args()
+
 
 def load_daniels_shitty_csv(path):
     df = pd.read_csv(path)
@@ -9,7 +32,9 @@ def load_daniels_shitty_csv(path):
 
 
 def main():
-    df = load_daniels_shitty_csv('./fake_data.csv')
+    args = get_args()
+    
+    df = load_daniels_shitty_csv(args.src_path)
     sample_rate = 16000
     prefix = "libritts"
     
@@ -68,9 +93,9 @@ def main():
             supervisions=part_supervision_set,
         )
         
-        part_cut_set.to_json(f"{prefix}_cuts_{part}.json.gz")
-        part_recording_set.to_json(f"{prefix}_recordings_{part}.json.gz")
-        part_supervision_set.to_json(f"{prefix}_supervisions_{part}.json.gz")
+        part_cut_set.to_json(f"{args.dest_path}/{prefix}_cuts_{part}.json.gz")
+        part_recording_set.to_json(f"{args.dest_path}/{prefix}_recordings_{part}.json.gz")
+        part_supervision_set.to_json(f"{args.dest_path}/{prefix}_supervisions_{part}.json.gz")
     
 if __name__ == "__main__":
     main()
