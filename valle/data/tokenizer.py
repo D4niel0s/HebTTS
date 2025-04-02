@@ -330,7 +330,7 @@ class TextTokenizer:
             )
 
         elif backend == "hebrew_words":
-            phonemizer = AlefBERTRootTokenizer(vocab_file="/cs/labs/adiyoss/amitroth/valle/scripts/vocab.txt")
+            phonemizer = AlefBERTRootTokenizer(vocab_file="/home/yandex/APDL2425a/group_6/Documents/HebTTS/tokenizer/vocab.txt")
 
         elif backend == "english_chars":
             phonemizer = EnglishCharsBackend(
@@ -434,7 +434,7 @@ class AudioTokenizer:
         if not device:
             device = torch.device("cpu")
             if torch.cuda.is_available():
-                device = torch.device("cuda:0")
+                device = torch.device("cuda")
 
         self._device = device
 
