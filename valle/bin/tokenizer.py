@@ -167,6 +167,7 @@ def main():
                     supervisions=m["supervisions"],
                 )
             except Exception:
+                print("tell me why")
                 cut_set = m["cuts"]
 
             print(cut_set)
