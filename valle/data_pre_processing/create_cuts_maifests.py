@@ -51,8 +51,8 @@ def main():
         id = row['id'],
         recording_id = row['id'],  # must match the recording id above
         channel=0,
-        start=0.001,
-        duration=row['duration'] - 0.001,
+        start=0.01,
+        duration=row['duration'] - 0.01,
         text= row['transcript'],
         speaker= row['speaker'] 
     ) for _, row in df.iterrows()]
