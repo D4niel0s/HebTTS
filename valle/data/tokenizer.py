@@ -294,7 +294,7 @@ class TextTokenizer:
 
     def __init__(
             self,
-            language="en-us",
+            language="he",
             backend="espeak",
             separator=Separator(word="_", syllable="-", phone="|"),
             preserve_punctuation=True,
@@ -368,9 +368,9 @@ class TextTokenizer:
         if isinstance(text, str):
             text = [text]
 
-        # if self.extractor == "hebrew_words":
-        #     text_without_space = [t.replace(" ", "_") for t in text]
-        #     return [self.backend._tokenize(text_without_space)]
+        if self.extractor == "hebrew_words":
+            text_without_space = [t.replace(" ", "_") for t in text]
+            return [self.backend._tokenize(text_without_space)]
 
         phonemized = self.backend.phonemize(
             text, separator=self.separator, strip=strip, njobs=1

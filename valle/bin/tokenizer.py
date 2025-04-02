@@ -72,7 +72,7 @@ def get_args():
     parser.add_argument(
         "--text-extractor",
         type=str,
-        default="hebrew",
+        default="hebrew_words",
         help="espeak or pypinyin or pypinyin_initials_finals",
     )
     parser.add_argument(
