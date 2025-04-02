@@ -163,12 +163,13 @@ def main():
             )
             try:
                 cut_set = CutSet.from_manifests(
-                    recordings=m["recordings"],
+                    # recordings=m["recordings"],
                     supervisions=m["supervisions"],
                 )
             except Exception:
                 cut_set = m["cuts"]
 
+            print(cut_set)
             # AudioTokenizer
             if args.audio_extractor and False:
                 if args.audio_extractor == "Encodec":
