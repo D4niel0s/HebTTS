@@ -44,7 +44,7 @@ def main():
     manifest_dir = args.manifest_dir or Path("data/tokenized")
     for part in ["train", "dev", "test"]:
         print(f"##  {part}")
-        cuts = load_manifest_lazy(manifest_dir / f"cuts_{part}.jsonl.gz")
+        cuts = load_manifest_lazy(manifest_dir / f"libritts_cuts_{part}.jsonl.gz")
         cuts.describe()
         print("\n")
 
