@@ -92,6 +92,7 @@ class TtsDataModule:
             "--manifest-dir",
             type=Path,
             # default=Path("/cs/labs/adiyoss/amitroth/valle/examples/osim_geek/data/tokenized"),
+            default="/home/yandex/APDL2425a/group_6/Documents",
             help="Path to directory with train/valid/test cuts.",
         ) # todo - change here default
         group.add_argument(
