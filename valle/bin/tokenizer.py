@@ -163,7 +163,7 @@ def main():
             )
             try:
                 cut_set = CutSet.from_manifests(
-                    # recordings=m["recordings"],
+                    recordings=m["recordings"],
                     supervisions=m["supervisions"],
                 )
             except Exception:
