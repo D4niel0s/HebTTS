@@ -140,7 +140,7 @@ def main():
     audio_extractor = None
     if args.audio_extractor:
         if args.audio_extractor == "Encodec":
-            audio_extractor = AudioTokenExtractor(AudioTokenConfig())
+            audio_extractor = AudioTokenExtractor(AudioTokenConfig()).to("cuda")
         elif args.audio_extractor.lower() == "dac":
             exit()
         else:
