@@ -157,12 +157,13 @@ def main():
         prefix = f"{prefix}_"
     with get_executor() as ex:
         for partition, m in manifests.items():
+            print(m)
             logging.info(
                 f"Processing partition: {partition} CUDA: {torch.cuda.is_available()}"
             )
             try:
                 cut_set = CutSet.from_manifests(
-                    # recordings=m["recordings"],
+                    recordings=m["recordings"],
                     supervisions=m["supervisions"],
                 )
             except Exception:
