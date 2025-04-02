@@ -73,8 +73,8 @@ def main():
     #     random_state=random_state
     # )
 
-    dev_indices = temp_indices[test_size:]
-    test_indices = temp_indices[:test_size]
+    # dev_indices = temp_indices[test_size:]
+    # test_indices = temp_indices[:test_size]
     
     train_indices = indices
     
