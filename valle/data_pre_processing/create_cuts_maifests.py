@@ -40,7 +40,7 @@ def main():
     prefix = "libritts"
     
     recordings = [Recording(
-            id = str(row['id']),  # Convert id to string to be safe
+            id = row['id'],  # Convert id to string to be safe
             sources = [AudioSource(type = "file", channels = [0], source = row['path'])], # Use channels instead of channel_ids
             sampling_rate = sample_rate,
             num_samples = int(row['duration'] * sample_rate),   # e.g., 3 seconds * 16000 samples/sec
