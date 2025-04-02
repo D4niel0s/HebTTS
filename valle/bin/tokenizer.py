@@ -232,6 +232,7 @@ def main():
                         unique_symbols.update(phonemes)
                 else:
                     for c in tqdm(cut_set):
+                        ...
                         # print(c)
                         # print(c.supervisions)
                         # if args.prefix == "ljspeech":
