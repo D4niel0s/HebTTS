@@ -225,7 +225,7 @@ class TtsDataModule:
         parser.add_argument(
             "--sampling-rate",
             type=int,
-            default=24000,
+            default=16000,
             help="""Audio sampling rate.""",
         )
 

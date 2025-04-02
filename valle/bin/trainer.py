@@ -31,6 +31,7 @@ import copy
 import logging
 import os
 from contextlib import nullcontext
+from str2bool import str2bool
 
 os.environ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION"] = "python"
 
