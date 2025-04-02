@@ -582,11 +582,12 @@ class AudioTokenExtractor(FeatureExtractor):
         for b, length in enumerate(lengths):
             codes = encoded_frames[b]
             duration = round(length / sampling_rate, ndigits=12)
-            expected_num_frames = compute_num_frames(
-                duration=duration,
-                frame_shift=self.frame_shift,
-                sampling_rate=sampling_rate,
-            )
+            # expected_num_frames = compute_num_frames(
+            #     duration=duration,
+            #     frame_shift=self.frame_shift,
+            #     sampling_rate=sampling_rate,
+            # )
+            expected_num_frames = duration * sampling_rate
             batch_codes.append(codes[..., :expected_num_frames])
 
         res = [codes.cpu().permute(1, 0).numpy() for codes in batch_codes]
