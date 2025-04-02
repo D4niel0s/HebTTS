@@ -231,6 +231,7 @@ def main():
                         unique_symbols.update(phonemes)
                 else:
                     for c in tqdm(cut_set):
+                        print(c.supervisions)
                         if args.prefix == "ljspeech":
                             text = c.supervisions[0].custom["normalized_text"]
                             text = text.replace("”", '"').replace("“", '"')
