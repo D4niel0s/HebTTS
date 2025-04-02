@@ -157,7 +157,7 @@ def main():
         prefix = f"{prefix}_"
     with get_executor() as ex:
         for partition, m in manifests.items():
-            print(m)
+            print(m["supervisions"])
             logging.info(
                 f"Processing partition: {partition} CUDA: {torch.cuda.is_available()}"
             )
