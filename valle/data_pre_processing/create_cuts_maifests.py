@@ -51,8 +51,8 @@ def main():
         id = row['id'],
         recording_id = row['id'],  # must match the recording id above
         channel=0,
-        start=1,
-        duration=row['duration'] - 1,
+        start=0,
+        duration=row['duration'],
         text= row['transcript'],
         speaker= row['speaker'],
         custum = {},
