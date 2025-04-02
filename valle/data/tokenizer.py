@@ -126,7 +126,7 @@ class EnglishWordsBackend:
 
 class HebrewBackend:
     """
-        NEED MUCH MORE WORK!
+        NEED MUCH MORE WORK! - because We DID NOTHING!
     """
 
     def __init__(self, punctuation_marks: Union[str, Pattern] = Punctuation.default_marks(), ):

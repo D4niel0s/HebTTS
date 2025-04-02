@@ -138,7 +138,7 @@ def get_parser():
     parser.add_argument(
         "--exp-dir",
         type=str,
-        default="exp/valle_dev",
+        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/valle/exp/valle_dev",
         help="""The experiment dir.
         It specifies the directory where all training related
         files, e.g., checkpoints, log, etc, are saved
@@ -236,7 +236,7 @@ def get_parser():
     parser.add_argument(
         "--dtype",
         type=str,
-        default="float32",
+        default="bfloat16",
         help="Training dtype: float32 bfloat16 float16.",
     )
 
@@ -264,7 +264,7 @@ def get_parser():
     parser.add_argument(
         "--visualize",
         type=str2bool,
-        default=False,
+        default=True,
         help="visualize model results in eval step.",
     )
 
@@ -874,7 +874,7 @@ def run(rank, world_size, args):
 
     wandb.init(
         # set the wandb project where this run will be logged
-        project="valle",
+        project="HebrewTTS recreation",
         notes=f"{args}",
         # track hyperparameters and run metadata
         config={
