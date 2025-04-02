@@ -60,13 +60,13 @@ def get_args():
     parser.add_argument(
         "--src-dir",
         type=Path,
-        default=Path("/home/yandex/APDL2425a/group_6/Documents/HEBTTS/valle/data/manifests"),
+        default=Path("/home/yandex/APDL2425a/group_6/Documents"),
         help="Path to the manifest files",
     )
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("/home/yandex/APDL2425a/group_6/Documents/HEBTTS/valle/data/tokenized"),
+        default=Path("/home/yandex/APDL2425a/group_6/Documents"),
         help="Path to the tokenized files",
     )
     parser.add_argument(
