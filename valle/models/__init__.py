@@ -91,7 +91,6 @@ def add_model_arguments(parser: argparse.ArgumentParser):
     # Transformer
     parser.add_argument(
         "--scaling-xformers",
-        type=str2bool,
         default=False,
         help="Apply Reworked Conformer scaling on Transformers.",
     )
