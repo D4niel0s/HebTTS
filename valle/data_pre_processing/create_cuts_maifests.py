@@ -28,6 +28,7 @@ def get_args():
 
 def load_daniels_shitty_csv(path):
     df = pd.read_csv(path, sep='|')
+    print(df.head())
     return df
 
 
