@@ -66,12 +66,12 @@ def main():
     test_size = total_size - train_size - dev_size
     indices = np.arange(total_size)
 
-    train_indices, temp_indices = train_test_split(
-        indices, 
-        train_size=train_size,
-        test_size=dev_size + test_size,
-        random_state=random_state
-    )
+    # train_indices, temp_indices = train_test_split(
+    #     indices, 
+    #     train_size=train_size,
+    #     test_size=dev_size + test_size,
+    #     random_state=random_state
+    # )
 
     dev_indices = temp_indices[test_size:]
     test_indices = temp_indices[:test_size]
