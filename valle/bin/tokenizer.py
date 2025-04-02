@@ -157,7 +157,6 @@ def main():
         prefix = f"{prefix}_"
     with get_executor() as ex:
         for partition, m in manifests.items():
-            print(m["supervisions"][0])
             logging.info(
                 f"Processing partition: {partition} CUDA: {torch.cuda.is_available()}"
             )
@@ -170,9 +169,8 @@ def main():
                 print("tell me why")
                 cut_set = m["cuts"]
 
-            print(cut_set)
             # AudioTokenizer
-            if args.audio_extractor and False:
+            if args.audio_extractor:
                 if args.audio_extractor == "Encodec":
                     storage_path = (
                         f"{args.output_dir}/{args.prefix}_encodec_{partition}"
