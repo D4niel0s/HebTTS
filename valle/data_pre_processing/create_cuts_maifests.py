@@ -76,10 +76,12 @@ def main():
     dev_indices = temp_indices[test_size:]
     test_indices = temp_indices[:test_size]
     
+    train_indices = indices
+    
     part_indices = [
         (train_indices, "train"),
-        (dev_indices, "dev"),
-        (test_indices, "test"),
+        # (dev_indices, "dev"),
+        # (test_indices, "test"),
     ]
     
     for indices, part in part_indices:
