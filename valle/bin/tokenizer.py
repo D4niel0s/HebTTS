@@ -202,13 +202,20 @@ def main():
                         torch.cuda.is_available()
                         and args.audio_extractor == "Encodec" or args.audio_extractor == "dac"
                     ):
-                        cut_set = cut_set.compute_and_store_features_batch(
+                        # cut_set = cut_set.compute_and_store_features_batch(
+                        #     extractor=audio_extractor,
+                        #     storage_path=storage_path,
+                        #     num_workers=num_jobs,
+                        #     batch_duration=args.batch_duration,
+                        #     collate=False,
+                        #     overwrite=True,
+                        #     storage_type=NumpyHdf5Writer,
+                        # )
+                        cut_set = cut_set.compute_and_store_features(
                             extractor=audio_extractor,
                             storage_path=storage_path,
-                            num_workers=num_jobs,
-                            batch_duration=args.batch_duration,
-                            collate=False,
-                            overwrite=True,
+                            num_jobs=num_jobs if ex is None else 64,
+                            executor=ex,
                             storage_type=NumpyHdf5Writer,
                         )
                     else:
