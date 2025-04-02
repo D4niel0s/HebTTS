@@ -595,7 +595,7 @@ class AudioTokenExtractor(FeatureExtractor):
 
 
 if __name__ == "__main__":
-    model = EncodecModel.encodec_model_24khz()
+    model = EncodecModel.encodec_model_16khz()
     model.set_target_bandwidth(6.0)
 
     samples = torch.from_numpy(np.random.random([4, 1, 1600])).type(
