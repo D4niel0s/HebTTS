@@ -55,7 +55,7 @@ def main():
         duration=row['duration'],
         text= row['transcript'],
         speaker= row['speaker'],
-        custum = {},
+        custom = {},
     ) for _, row in df.iterrows()]
 
     
