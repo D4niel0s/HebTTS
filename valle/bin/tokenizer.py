@@ -170,7 +170,7 @@ def main():
                 cut_set = m["cuts"]
 
             # AudioTokenizer
-            if args.audio_extractor:
+            if args.audio_extractor and False:
                 if args.audio_extractor == "Encodec":
                     storage_path = (
                         f"{args.output_dir}/{args.prefix}_encodec_{partition}"
