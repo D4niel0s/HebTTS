@@ -231,23 +231,24 @@ def main():
                         unique_symbols.update(phonemes)
                 else:
                     for c in tqdm(cut_set):
-                        print(c.supervisions)
-                        if args.prefix == "ljspeech":
-                            text = c.supervisions[0].custom["normalized_text"]
-                            text = text.replace("”", '"').replace("“", '"')
-                            phonemes = tokenize_text(text_tokenizer, text=text)
-                        elif args.prefix == "aishell":
-                            phonemes = tokenize_text(
-                                text_tokenizer, text=c.supervisions[0].text
-                            )
-                            c.supervisions[0].custom = {}
-                        else:
-                            assert args.prefix == "libritts"
-                            phonemes = tokenize_text(
-                                text_tokenizer, text=c.supervisions[0].text
-                            )
-                        c.supervisions[0].custom["tokens"] = {"text": phonemes}
-                        unique_symbols.update(phonemes)
+                        print(c)
+                        # print(c.supervisions)
+                        # if args.prefix == "ljspeech":
+                        #     text = c.supervisions[0].custom["normalized_text"]
+                        #     text = text.replace("”", '"').replace("“", '"')
+                        #     phonemes = tokenize_text(text_tokenizer, text=text)
+                        # elif args.prefix == "aishell":
+                        #     phonemes = tokenize_text(
+                        #         text_tokenizer, text=c.supervisions[0].text
+                        #     )
+                        #     c.supervisions[0].custom = {}
+                        # else:
+                        #     assert args.prefix == "libritts"
+                        #     phonemes = tokenize_text(
+                        #         text_tokenizer, text=c.supervisions[0].text
+                        #     )
+                        # c.supervisions[0].custom["tokens"] = {"text": phonemes}
+                        # unique_symbols.update(phonemes)
 
             # cuts_filename = f"{prefix}cuts_{partition}.{args.suffix}"
             # cut_set.to_file(f"{args.output_dir}/{cuts_filename}")
