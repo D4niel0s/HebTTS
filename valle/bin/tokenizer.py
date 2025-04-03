@@ -90,7 +90,7 @@ def get_args():
     parser.add_argument(
         "--prefix",
         type=str,
-        default="libritts",
+        default="",
         help="prefix of the manifest file",
     )
     parser.add_argument(

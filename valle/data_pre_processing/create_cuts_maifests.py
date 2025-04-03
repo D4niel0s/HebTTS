@@ -37,7 +37,7 @@ def main():
     
     df = load_daniels_shitty_csv(args.src_path)
     sample_rate = 16000
-    prefix = "libritts"
+
     
     recordings = [Recording(
             id = row['id'],  # Convert id to string to be safe
@@ -95,9 +95,9 @@ def main():
             supervisions=part_supervision_set,
         )
         
-        part_cut_set.to_file(f"{args.dest_path}/{prefix}_cuts_{part}.jsonl.gz")
-        part_recording_set.to_file(f"{args.dest_path}/{prefix}_recordings_{part}.jsonl.gz")
-        part_supervision_set.to_file(f"{args.dest_path}/{prefix}_supervisions_{part}.jsonl.gz")
+        part_cut_set.to_file(f"{args.dest_path}/cuts_{part}.jsonl.gz")
+        part_recording_set.to_file(f"{args.dest_path}/recordings_{part}.jsonl.gz")
+        part_supervision_set.to_file(f"{args.dest_path}/supervisions_{part}.jsonl.gz")
     
 if __name__ == "__main__":
     main()

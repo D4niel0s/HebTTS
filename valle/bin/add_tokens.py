@@ -18,9 +18,9 @@ def append_chars_subwords(output_dir):
     subwords_tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-uncased")
 
     cut_names = [
-        "libritts_cuts_dev.jsonl.gz",
-        "libritts_cuts_train.jsonl.gz",
-        "libritts_cuts_test.jsonl.gz"
+        "cuts_dev.jsonl.gz",
+        "cuts_train.jsonl.gz",
+        "cuts_test.jsonl.gz"
     ]
 
     word_unique_symbols = set()
