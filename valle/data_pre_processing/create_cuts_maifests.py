@@ -12,14 +12,14 @@ def get_args():
     parser.add_argument(
         "--src-path",
         type=str,
-        default='fake_data.csv',
+        default='/home/yandex/APDL2425a/group_6/hf_cache/FINAL_DATASET.csv',
         help="Path to source csv.",
     )
 
     parser.add_argument(
         "--dest-path",
         type=str,
-        default='.',
+        default='/home/yandex/APDL2425a/group_6/Documents',
         help="Path to save the manifests.",
     )
 
