@@ -248,7 +248,7 @@ def main():
                             )
                             c.supervisions[0].custom = {}
                         else:
-                            assert args.prefix == "libritts"
+                            assert args.prefix == ""
                             phonemes = tokenize_text(
                                 text_tokenizer, text=c.supervisions[0].text
                             )
