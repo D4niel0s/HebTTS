@@ -14,7 +14,7 @@ from valle.data import (
 
 
 def append_chars_subwords(output_dir):
-    chars_tokenizer = TextTokenizer(backend="english_chars")
+    chars_tokenizer = TextTokenizer(backend="hebrew_words")
     subwords_tokenizer = BertTokenizer.from_pretrained("google-bert/bert-base-uncased")
 
     cut_names = [
@@ -73,6 +73,6 @@ def append_chars_subwords(output_dir):
 
 
 if __name__ == '__main__':
-    cuts_dev_path = "/cs/labs/adiyoss/amitroth/valle/examples/libritts/data/tokenized"
+    cuts_path = "/home/yandex/APDL2425a/group_6/Documents"
 
-    append_chars_subwords(Path(cuts_dev_path))
+    append_chars_subwords(Path(cuts_path))
