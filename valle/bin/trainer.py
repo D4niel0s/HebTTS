@@ -263,7 +263,7 @@ def get_parser():
     parser.add_argument(
         "--train-stage",
         type=int,
-        default=0,
+        default=1,
         help="""0: train all modules, For VALL-E, support 1: AR Decoder 2: NAR Decoder(s)
         """,
     )

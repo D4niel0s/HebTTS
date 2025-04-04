@@ -42,9 +42,13 @@ def append_chars_subwords(output_dir):
 
             word_unique_symbols.update(word_tokens)
             char_unique_symbols.update(char_tokens)
+            
+            c.supervisions[0].custom["tokens"] = {
+                "char": char_tokens,
+                "word": word_tokens,
+                "text": char_tokens,
+            }
 
-            c.supervisions[0].custom["tokens"]["char"] = char_tokens
-            c.supervisions[0].custom["tokens"]["word"] = word_tokens
             """
                 PHONEMES TOKENS ARE CALLED TEXT DUE TO LEGACY!
             """
