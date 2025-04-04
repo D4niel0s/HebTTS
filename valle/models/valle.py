@@ -1955,7 +1955,16 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             # print(f"prenet {x.shape}")
 
             print('##PRENET###')
+            print(f"{x=}")
             print(f"x.shape = {x.shape}")
+            print(f"x.dtype = {x.dtype}")
+            if torch.isnan(x).any():
+                print("NAN in x!")
+            if torch.isinf(x).any():
+                print("INF in x!")
+            print("x.device:", x.device)
+
+
             x = self.ar_text_position(x)
             y_len = y_lens.max() + int(self.ar_audio_prepend_bos)  # todo - debugged here!
 
