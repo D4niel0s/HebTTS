@@ -1938,18 +1938,9 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             # print(f"text {text}")
             # print(f"forward {text.shape}")
             
-            # alephbertTokens = 768
-            # embeddings = 1024
-            print(f'{x_mask=}')
             alephbert_tokens = self.alephbert(text, attention_mask=x_mask).last_hidden_state
-            print(f'{alephbert_tokens=}')
-
             embedding = self.ar_text_embedding(text)
-            print(f"weight - {self.ar_text_embedding.weight}")
-            print(f'{embedding=}')
-
             x = alephbert_tokens + embedding
-            print(f'{x=}')
 
 
             # print(f"text {text.cpu()}")
