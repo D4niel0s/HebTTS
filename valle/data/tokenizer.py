@@ -423,13 +423,13 @@ class AudioTokenizer:
     ) -> None:
 
         # Instantiate a pretrained EnCodec model
-        model = EncodecModel.encodec_model_16khz()
+        model = EncodecModel.encodec_model_24khz()
         model.set_target_bandwidth(6.0)
         remove_encodec_weight_norm(model)
 
         if mbd:
             from audiocraft.models import MultiBandDiffusion
-            self.mbd = MultiBandDiffusion.get_mbd_16khz(bw=6.0)
+            self.mbd = MultiBandDiffusion.get_mbd_24khz(bw=6.0)
 
         if not device:
             device = torch.device("cpu")

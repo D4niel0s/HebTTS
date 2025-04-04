@@ -150,6 +150,8 @@ def main():
                 f"{args.output_dir}/encodec_{partition}"
             )
 
+            cut_set = cut_set.resample(24000)
+            
             with torch.no_grad():
                 if (torch.cuda.is_available()):
                     cut_set = cut_set.compute_and_store_features_batch(
