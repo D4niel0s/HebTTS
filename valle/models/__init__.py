@@ -84,7 +84,7 @@ def add_model_arguments(parser: argparse.ArgumentParser):
     parser.add_argument(
         "--num-text-tokens",
         type=int,
-        default=512,
+        default=52000,
         help="number of text tokens for token embedding"
     )
 
