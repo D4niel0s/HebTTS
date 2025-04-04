@@ -125,7 +125,7 @@ def main():
     audio_extractor = None
     if args.audio_extractor == "Encodec":
         audio_extractor = AudioTokenExtractor(AudioTokenConfig())
-        print(audio_extractor.tokenizer.device())
+        print(audio_extractor.tokenizer.device)
 
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
     
