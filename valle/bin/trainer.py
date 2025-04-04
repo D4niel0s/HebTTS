@@ -92,7 +92,7 @@ def get_parser():
     parser.add_argument(
         "--world-size",
         type=int,
-        default=1,
+        default=2,
         help="Number of GPUs for DDP training.",
     )
 
@@ -106,14 +106,14 @@ def get_parser():
     parser.add_argument(
         "--tensorboard",
         type=str2bool,
-        default=True,
+        default=False,
         help="Should various information be logged in tensorboard.",
     )
 
     parser.add_argument(
         "--num-epochs",
         type=int,
-        default=20,
+        default=4,
         help="Number of epochs to train.",
     )
 
@@ -211,7 +211,7 @@ def get_parser():
     parser.add_argument(
         "--keep-last-k",
         type=int,
-        default=20,
+        default=15,
         help="""Only keep this number of checkpoints on disk.
         For instance, if it is 3, there are only 3 checkpoints
         in the exp-dir with filenames `checkpoint-xxx.pt`.
@@ -250,7 +250,7 @@ def get_parser():
     parser.add_argument(
         "--filter-min-duration",
         type=float,
-        default=0.0,
+        default=1.0,
         help="Keep only utterances with duration > this.",
     )
     parser.add_argument(

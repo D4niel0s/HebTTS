@@ -212,21 +212,21 @@ class TtsDataModule:
         group.add_argument(
             "--dataset",
             type=str,
-            # default="libritts",
+            default="libritts",
             help="--input-strategy PromptedPrecomputedFeatures needs dataset name to prepare prompts.",
         )
 
         parser.add_argument(
             "--text-tokens-path",
             type=str,
-            default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/tokenizer/unique_words_tokens_all.k2symbols",
+            default="/home/yandex/APDL2425a/group_6/Documents/unique_text_tokens_all.k2symbols",
             help="Path to the unique text tokens file",
         ) # TODO change it
 
         parser.add_argument(
             "--sampling-rate",
             type=int,
-            default=16000,
+            default=24000,
             help="""Audio sampling rate.""",
         )
 
