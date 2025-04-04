@@ -1908,7 +1908,6 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         text = x
         codes = y.type(torch.int64) * (1 - y_mask_int.unsqueeze(dim=-1))
 
-        print(f'4{x=}')
         y, targets = self.pad_y_eos(
             codes[..., 0], y_mask_int, eos_id=NUM_AUDIO_TOKENS
         )
@@ -1916,7 +1915,6 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         x_len = x_lens.max()
         # y_lens_max = y_lens.max().cpu()  # TODO - debuged it
 
-        print(f'5{x=}')
 
         metrics = {}
         total_loss = 0.0
