@@ -1885,7 +1885,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         """
         assert x.ndim == 2, x.shape
         assert x_lens.ndim == 1, x_lens.shape
-        print(f'{x=}')
+        print(f'1{x=}')
 
         y_prompts_codes = None
         if isinstance(y, PromptedFeatures):
@@ -1895,7 +1895,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             assert self.prefix_mode == 4
             y_prompts_codes = y_prompts_codes.type(torch.int64)
 
-        print(f'{x=}')
+        print(f'2{x=}')
 
         assert y.ndim == 3, y.shape
         assert y_lens.ndim == 1, y_lens.shape
@@ -1904,14 +1904,14 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         x_mask = make_pad_mask(x_lens).to(x.device)
         y_mask = make_pad_mask(y_lens).to(y.device)
 
-        print(f'{x=}')
+        print(f'3{x=}')
 
         y_mask_int = y_mask.type(torch.int64)
 
         text = x
         codes = y.type(torch.int64) * (1 - y_mask_int.unsqueeze(dim=-1))
 
-        print(f'{x=}')
+        print(f'4{x=}')
         y, targets = self.pad_y_eos(
             codes[..., 0], y_mask_int, eos_id=NUM_AUDIO_TOKENS
         )
@@ -1919,13 +1919,13 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         x_len = x_lens.max()
         # y_lens_max = y_lens.max().cpu()  # TODO - debuged it
 
-        print(f'{x=}')
+        print(f'5{x=}')
 
         metrics = {}
         total_loss = 0.0
         xy_padding_mask = torch.concat([x_mask, y_mask], dim=1)
 
-        print(f'{x=}')
+        print(f'6{x=}')
 
         if self.ar_audio_prepend_bos:
             ar_xy_padding_mask = torch.concat(
@@ -1947,14 +1947,15 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             
             # alephbertTokens = 768
             # embeddings = 1024
-            print(f'{x=}')
+            print(f'7{x=}')
 
             alephbert_tokens = self.alephbert(text, attention_mask=x_mask).last_hidden_state
+            print(f'8{x=}')
             embedding = self.ar_text_embedding(text)
-            print(f'{x=}')
+            print(f'9{x=}')
             x = alephbert_tokens + embedding
-            print(f'{x=}')
-            
+            print(f'10{x=}')
+
             print('###DID THE CONCAT THINGY###')
             # print(f"weight - {self.ar_text_embedding.weight}")
 
