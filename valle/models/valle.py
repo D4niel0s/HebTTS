@@ -1925,6 +1925,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         else:
             ar_xy_padding_mask = xy_padding_mask
 
+        print('###DID THE PROLOGUE###')
         # AR Decoder
         if train_stage in [0, 1]:
             # print(f"x_mask {x_mask}")
@@ -1941,6 +1942,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             embedding = self.ar_text_embedding(text)
             x = alephbert_tokens + embedding
 
+            print('###DID THE CONCAT THINGY###')
             # print(f"weight - {self.ar_text_embedding.weight}")
 
             # print(f"text {text.cpu()}")
@@ -1952,10 +1954,12 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             x = self.ar_text_prenet(x)
             # print(f"prenet {x.shape}")
 
+            print('##PRENET###')
 
             x = self.ar_text_position(x)
             y_len = y_lens.max() + int(self.ar_audio_prepend_bos)  # todo - debugged here!
 
+            print('##POS EMBED###')
             x_attn_mask = F.pad(
                 torch.zeros((x_len, x_len), dtype=torch.bool, device=x.device),
                 (0, y_len),
