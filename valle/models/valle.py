@@ -1933,6 +1933,9 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             # print(f"lens {x_lens.shape}")
             # print(f"text {text}")
             # print(f"forward {text.shape}")
+            
+            # alephbertTokens = 768
+            # embeddings = 1024
 
             alephbert_tokens = self.alephbert(text, attention_mask=x_mask).last_hidden_state
             embedding = self.ar_text_embedding(text)
