@@ -1929,7 +1929,6 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         else:
             ar_xy_padding_mask = xy_padding_mask
 
-        print('###DID THE PROLOGUE###')
         # AR Decoder
         if train_stage in [0, 1]:
             # print(f"x_mask {x_mask}")
@@ -1941,15 +1940,17 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             
             # alephbertTokens = 768
             # embeddings = 1024
-
+            print(f'{x_mask=}')
             alephbert_tokens = self.alephbert(text, attention_mask=x_mask).last_hidden_state
             print(f'{alephbert_tokens=}')
+
             embedding = self.ar_text_embedding(text)
+            print(f"weight - {self.ar_text_embedding.weight}")
             print(f'{embedding=}')
+
             x = alephbert_tokens + embedding
             print(f'{x=}')
 
-            # print(f"weight - {self.ar_text_embedding.weight}")
 
             # print(f"text {text.cpu()}")
             # print(f"alephbert_tokens {alephbert_tokens.shape} {alephbert_tokens}")
