@@ -92,7 +92,7 @@ def get_parser():
     parser.add_argument(
         "--world-size",
         type=int,
-        default=4,
+        default=3,
         help="Number of GPUs for DDP training.",
     )
 
