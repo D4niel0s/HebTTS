@@ -588,7 +588,6 @@ class AudioTokenExtractor(FeatureExtractor):
                 frame_shift=self.frame_shift,
                 sampling_rate=sampling_rate,
             )
-            print(sampling_rate)
             batch_codes.append(codes[..., :expected_num_frames])
 
         res = [codes.cpu().permute(1, 0).numpy() for codes in batch_codes]
