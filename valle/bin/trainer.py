@@ -243,7 +243,7 @@ def get_parser():
     parser.add_argument(
         "--dtype",
         type=str,
-        default="bfloat16",
+        default="float16",
         help="Training dtype: float32 bfloat16 float16.",
     )
 
