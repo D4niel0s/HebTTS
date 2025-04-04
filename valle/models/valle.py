@@ -1951,18 +1951,11 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             # print(f"x {x.shape} {x}")
 
             # print(f"last hidden state {x.shape}")
+            print(f"{x=}")
             x = self.ar_text_prenet(x)
             # print(f"prenet {x.shape}")
 
             print('##PRENET###')
-            print(f"{x=}")
-            print(f"x.shape = {x.shape}")
-            print(f"x.dtype = {x.dtype}")
-            if torch.isnan(x).any():
-                print("NAN in x!")
-            if torch.isinf(x).any():
-                print("INF in x!")
-            print("x.device:", x.device)
 
 
             x = self.ar_text_position(x)
