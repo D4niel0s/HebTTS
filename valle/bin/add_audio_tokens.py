@@ -114,6 +114,11 @@ def main():
 
     assert len(dataset_parts) >= 1
 
+    audio_extractor = None
+    if args.audio_extractor == "Encodec":
+        audio_extractor = AudioTokenExtractor(AudioTokenConfig())
+        print(audio_extractor.tokenizer.device)
+        
     manifests = read_manifests_if_cached(
         dataset_parts=dataset_parts,
         output_dir=args.src_dir,
@@ -121,11 +126,6 @@ def main():
         suffix=args.suffix,
         types=["recordings", "supervisions", "cuts"],
     )
-
-    audio_extractor = None
-    if args.audio_extractor == "Encodec":
-        audio_extractor = AudioTokenExtractor(AudioTokenConfig())
-        print(audio_extractor.tokenizer.device)
 
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
     
