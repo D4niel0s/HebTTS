@@ -1929,6 +1929,9 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         else:
             ar_xy_padding_mask = xy_padding_mask
 
+        x_mask = x_mask.float()
+        y_mask = y_mask.float()
+        ar_xy_padding_mask = ar_xy_padding_mask.float()
         # AR Decoder
         if train_stage in [0, 1]:
             # print(f"x_mask {x_mask}")
