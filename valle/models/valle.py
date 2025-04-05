@@ -69,7 +69,7 @@ class VALLF(nn.Module):
         nar_scale_factor: float = 1.0,
         prepend_bos: bool = False,
         num_quantizers: int = 8,
-        num_text_tokens = 512
+        num_text_tokens = 52000
     ):
         """
         Args:
