@@ -44,6 +44,8 @@ from typing import Any, Dict, Optional, Tuple, Union
 import torch
 import torch.multiprocessing as mp
 import torch.nn as nn
+import icefall
+import k2
 from icefall.checkpoint import load_checkpoint, remove_checkpoints
 from icefall.checkpoint import save_checkpoint as save_checkpoint_impl
 from icefall.checkpoint import (
