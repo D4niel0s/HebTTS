@@ -1898,11 +1898,12 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         assert y.ndim == 3, y.shape
         assert y_lens.ndim == 1, y_lens.shape
 
-        print(f'{x_lens=}')
         # NOTE: x has been padded in TextTokenCollater
         x_mask = make_pad_mask(x_lens).to(x.device)
         y_mask = make_pad_mask(y_lens).to(y.device)
-        print(f'{x_mask=}')
+
+        x_mask = ~x_mask
+        y_mask = ~y_mask        
         
         y_mask_int = y_mask.type(torch.int64)
 
@@ -1939,7 +1940,10 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             # print(f"text {text}")
             # print(f"forward {text.shape}")
             
+            print(f'{x_mask=}')
             alephbert_tokens = self.alephbert(text, attention_mask=x_mask).last_hidden_state
+            print(f'{alephbert_tokens=}')
+
             embedding = self.ar_text_embedding(text)
             x = alephbert_tokens + embedding
 
