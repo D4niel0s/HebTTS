@@ -1992,8 +1992,11 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             new_attn_mask.masked_fill_(xy_attn_mask, float("-inf"))
             xy_attn_mask = new_attn_mask
 
+            print(f'{y.shape=}')
             y_emb = self.ar_audio_embedding(y)
+            print(f'{y_emb.shape=}')
             y_emb = self.ar_audio_prenet(y_emb)
+            print(f'{y_emb.shape=}')
             y_pos = self.ar_audio_position(y_emb)
 
             xy_pos = torch.concat([x, y_pos], dim=1)
