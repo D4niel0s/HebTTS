@@ -278,7 +278,7 @@ def get_parser():
     parser.add_argument(
         "--oom-check",
         type=str2bool,
-        default=True,
+        default=False,
         help="perform OOM check on dataloader batches before starting training.",
     )
 
