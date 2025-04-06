@@ -1905,7 +1905,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         x_mask = make_pad_mask(x_lens).to(x.device)
         y_mask = make_pad_mask(y_lens).to(y.device)       
         
-        y_mask_int = (~y_mask).type(torch.int64)
+        y_mask_int = y_mask.type(torch.int64)
 
         text = x
         codes = y.type(torch.int64) * (1 - y_mask_int.unsqueeze(dim=-1))
