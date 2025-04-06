@@ -2007,8 +2007,8 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             xy_dec, _ = self.ar_decoder(
                 (xy_pos, None),
                 mask=xy_attn_mask,
-                # src_key_padding_mask=xy_padding_mask,
-                # is_causal=True,
+                src_key_padding_mask=xy_padding_mask,
+                is_causal=True,
             )
             logits = self.ar_predict_layer(xy_dec[:, x_len:]).permute(0, 2, 1)
             # loss
