@@ -1999,6 +1999,8 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             y_pos = self.ar_audio_position(y_emb)
             
             xy_pos = torch.concat([x, y_pos], dim=1)
+
+            print(f'{xy_pos=}')
             
             output = self.ar_decoder(
                 xy_pos,
@@ -2007,11 +2009,15 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
                 True
             )
 
+            print(f'{output=}')
             xy_dec = output[-1]
+            print(f'{xy_dec=}')
 
             logits = self.ar_predict_layer(xy_dec[:, x_len.item():]).permute(0, 2, 1)
+            print(f'{logits=}')
             # loss
             total_loss = F.cross_entropy(logits, targets, reduction=reduction)
+            print(f'{total_loss=}')
 
             metrics["ArTop10Accuracy"] = self.ar_accuracy_metric(
                 logits.detach(), targets
