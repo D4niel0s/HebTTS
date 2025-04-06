@@ -2008,6 +2008,9 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
                 True
             )
             
+            if isinstance(xy_dec, list):
+                xy_dec = torch.tensor(xy_dec)
+
             logits = self.ar_predict_layer(xy_dec[:, x_len.item():]).permute(0, 2, 1)
             # loss
             total_loss = F.cross_entropy(logits, targets, reduction=reduction)
