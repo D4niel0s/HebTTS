@@ -1958,7 +1958,6 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             x = self.ar_text_prenet(x)
             # print(f"prenet {x.shape}")
             x = self.ar_text_position(x)
-            print(f'x_pos.shape={x.shape}')
 
             y_len = y_lens.max() + int(self.ar_audio_prepend_bos)  # todo - debugged here!
 
