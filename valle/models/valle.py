@@ -2007,7 +2007,10 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
                 # src_key_padding_mask=xy_padding_mask,
                 # is_causal=True,
             )
-
+            print(f"xy_dec.shape={xy_dec.shape}")
+            print(f"{x_len.item()=}")
+            print(f"{x_lens=}")
+            
             logits = self.ar_predict_layer(xy_dec[:, x_len.item():]).permute(0, 2, 1)
             # loss
             total_loss = F.cross_entropy(logits, targets, reduction=reduction)
