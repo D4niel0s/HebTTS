@@ -180,7 +180,7 @@ def get_parser():
     parser.add_argument(
         "--seed",
         type=int,
-        default=69420,
+        default=42,
         help="The seed for random generators intended for reproducibility",
     )
 
