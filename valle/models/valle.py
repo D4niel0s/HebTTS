@@ -2005,10 +2005,11 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             xy_pos = torch.concat([x, y_pos], dim=1)
 
             xy_dec, _ = self.ar_decoder(
-                (xy_pos, None),
+                tgt=xy_pos, 
+                memory=None,
                 tgt_mask=xy_attn_mask,
                 tgt_key_padding_mask=xy_padding_mask,
-                # causal=True,
+                tg_is_causal=True,
             )
             logits = self.ar_predict_layer(xy_dec[:, x_len:]).permute(0, 2, 1)
             # loss
