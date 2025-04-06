@@ -788,37 +788,37 @@ def train_one_epoch(
                 )
             )
 
-            if tb_writer is not None:
-                tb_writer.add_scalar(
-                    "train/learning_rate", cur_lr, params.batch_idx_train
-                )
-                loss_info.write_summary(
-                    tb_writer,
-                    "train/current_",
-                    params.batch_idx_train,
-                )
-                tot_loss.write_summary(
-                    tb_writer, "train/tot_", params.batch_idx_train
-                )
-                tot_loss.write_summary(
-                    tb_writer, "train/tot_", params.batch_idx_train
-                )
-                if params.dtype in ["float16", "fp16"]:
-                    tb_writer.add_scalar(
-                        "train/grad_scale",
-                        cur_grad_scale,
-                        params.batch_idx_train,
-                    )
+            # if tb_writer is not None:
+            #     tb_writer.add_scalar(
+            #         "train/learning_rate", cur_lr, params.batch_idx_train
+            #     )
+            #     loss_info.write_summary(
+            #         tb_writer,
+            #         "train/current_",
+            #         params.batch_idx_train,
+            #     )
+            #     tot_loss.write_summary(
+            #         tb_writer, "train/tot_", params.batch_idx_train
+            #     )
+            #     tot_loss.write_summary(
+            #         tb_writer, "train/tot_", params.batch_idx_train
+            #     )
+            #     if params.dtype in ["float16", "fp16"]:
+            #         tb_writer.add_scalar(
+            #             "train/grad_scale",
+            #             cur_grad_scale,
+            #             params.batch_idx_train,
+            #         )
 
-                wandb.log({"train/learning_rate": cur_lr}, step=params.batch_idx_train)
-                wandb.log({"train/current_loss": loss_info.norm_items()[0][1]}, step=params.batch_idx_train)
-                wandb.log({"train/total_loss": tot_loss.norm_items()[0][1]}, step=params.batch_idx_train)
+            wandb.log({"train/learning_rate": cur_lr}, step=params.batch_idx_train)
+            wandb.log({"train/current_loss": loss_info.norm_items()[0][1]}, step=params.batch_idx_train)
+            wandb.log({"train/total_loss": tot_loss.norm_items()[0][1]}, step=params.batch_idx_train)
 
         if params.batch_idx_train % params.valid_interval == 0:
             # Calculate validation loss in Rank 0
             model.eval()
             logging.info("Computing validation loss")
-            with torch.cuda.amp.autocast(dtype=dtype):
+            with torch.amp.autocast(dtype=dtype):
                 valid_info = compute_validation_loss(
                     params=params,
                     model=model,
