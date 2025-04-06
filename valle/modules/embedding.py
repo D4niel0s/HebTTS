@@ -71,19 +71,16 @@ class SinePositionalEmbedding(nn.Module):
                 if self.pe.dtype != x.dtype or self.pe.device != x.device:
                     self.pe = self.pe.to(dtype=x.dtype, device=x.device)
                 return
-        pe = torch.zeros(x.size(1), self.dim_model)
+            
+        pe = torch.zeros(x.size(1), self.dim_model, device=x.device, dtype=x.dtype)
         if self.reverse:
-            position = torch.arange(
-                x.size(1) - 1, -1, -1.0, dtype=torch.float32
-            ).unsqueeze(1)
+            position = torch.arange(x.size(1) - 1, -1, -1.0, dtype=torch.float32, device=x.device).unsqueeze(1)
         else:
-            position = torch.arange(
-                0, x.size(1), dtype=torch.float32
-            ).unsqueeze(1)
-        div_term = torch.exp(
-            torch.arange(0, self.dim_model, 2, dtype=torch.float32)
-            * -(math.log(10000.0) / self.dim_model)
-        )
+            position = torch.arange(0, x.size(1), dtype=torch.float32, device=x.device).unsqueeze(1)
+            
+        div_term = torch.exp(torch.arange(0, self.dim_model, 2,dtype=torch.float32) *
+                             -(math.log(10000.0) / self.dim_model))
+
         pe[:, 0::2] = torch.sin(position * div_term)
         pe[:, 1::2] = torch.cos(position * div_term)
         pe = pe.unsqueeze(0)
