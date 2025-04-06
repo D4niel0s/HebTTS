@@ -2002,11 +2002,12 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
 
             print(f'{xy_pos=}')
             print(f'{ar_xy_padding_mask=}')
+
             output = self.ar_decoder(
-                xy_pos,
-                xy_attn_mask.bool(),
-                ar_xy_padding_mask,
-                True
+                (xy_pos, None),
+                mask=xy_attn_mask,
+                # src_key_padding_mask=xy_padding_mask,
+                # is_causal=True,
             )
 
             print(f'{output=}')
