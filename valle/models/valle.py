@@ -2003,7 +2003,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             output, _ = self.ar_decoder(
                 (xy_pos, None),
                 mask=~xy_attn_mask.bool(),
-                # src_key_padding_mask=xy_padding_mask,
+                src_key_padding_mask=ar_xy_padding_mask,
                 # is_causal=True,
             )
             xy_dec = output[-1]
