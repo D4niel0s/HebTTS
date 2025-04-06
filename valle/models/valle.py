@@ -2005,7 +2005,8 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
                 tgt=xy_pos,
                 memory=None,
                 tgt_mask=xy_attn_mask[0],
-                tgt_key_padding_mask=ar_xy_padding_mask
+                tgt_key_padding_mask=ar_xy_padding_mask,
+                tgt_is_causal=True
             )
 
             logits = self.ar_predict_layer(xy_dec[:, x_len:]).permute(0, 2, 1)
