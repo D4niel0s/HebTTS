@@ -1847,7 +1847,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             norm_first=norm_first,
             add_prenet=add_prenet,
             decoder_cls=TransformerEncoder,
-            decoder_layer_cls=TransformerEncoderLayer,
+            decoder_layer_cls=TransformerDecoderLayer,
             prefix_mode=prefix_mode,
             share_embedding=share_embedding,
             nar_scale_factor=nar_scale_factor,
