@@ -2002,7 +2002,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
 
             print(f'{xy_pos=}')
             print(f'{ar_xy_padding_mask=}')
-            print(f'{xy_attn_mask[0]== float('-inf')=}')
+            print(f'{xy_attn_mask[0]== float("-inf")=}')
 
             output = self.ar_decoder(
                 xy_pos,
