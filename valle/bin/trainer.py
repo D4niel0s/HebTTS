@@ -329,7 +329,7 @@ def get_params() -> AttributeDict:
             "best_train_epoch": -1,
             "best_valid_epoch": -1,
             "batch_idx_train": 0,
-            "log_interval": 100,  # 10: debug 100: train
+            "log_interval": 1,  # 10: debug 100: train
             "reset_interval": 200,
             "valid_interval": 10000,
             # parameters for TTS
