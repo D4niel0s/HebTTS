@@ -61,8 +61,9 @@ class SinePositionalEmbedding(nn.Module):
         self.dropout = torch.nn.Dropout(p=dropout)
 
         self.reverse = False
-        self.pe = None
-        self.extend_pe(torch.zeros(1, 4000))
+
+        self.register_buffer("pe", torch.zeros(1, 4000))
+        self.extend_pe(torch.zeros(1, 4000, device="cpu"))
 
     def extend_pe(self, x):
         """Reset the positional encodings."""
