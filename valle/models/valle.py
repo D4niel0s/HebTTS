@@ -1909,10 +1909,10 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
 
         text = x
         codes = y.type(torch.int64) * (1 - y_mask_int.unsqueeze(dim=-1))
-        print(f'{y.shape=}')
-        print(f'{text.shape=}')
-        print(f'{y_mask_int.shape=}')
-        print(f'{codes.shape=}')
+        # print(f'{y.shape=}')
+        # print(f'{text.shape=}')
+        # print(f'{y_mask_int.shape=}')
+        # print(f'{codes.shape=}')
 
         y, targets = self.pad_y_eos(
             codes[..., 0], y_mask_int, eos_id=NUM_AUDIO_TOKENS
@@ -1946,12 +1946,12 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             
 
             alephbert_tokens = self.alephbert(text, attention_mask=~x_mask).last_hidden_state
-            print(f'{alephbert_tokens.shape=}')
+            # print(f'{alephbert_tokens.shape=}')
             embedding = self.ar_text_embedding(text)
-            print(f'{embedding.shape=}')
+            # print(f'{embedding.shape=}')
             x = alephbert_tokens + embedding
 
-            print(f'{x.shape=}')
+            # print(f'{x.shape=}')
 
             # print(f"text {text.cpu()}")
             # print(f"alephbert_tokens {alephbert_tokens.shape} {alephbert_tokens}")
@@ -1962,7 +1962,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             x = self.ar_text_prenet(x)
             # print(f"prenet {x.shape}")
             x = self.ar_text_position(x)
-            print(f'{x.shape=}')
+            # print(f'{x.shape=}')
 
             y_len = y_lens.max() + int(self.ar_audio_prepend_bos)  # todo - debugged here!
 
@@ -1998,20 +1998,20 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             new_attn_mask.masked_fill_(xy_attn_mask, float("-inf"))
             xy_attn_mask = new_attn_mask
 
-            print(f'{y.shape=}')
+            # print(f'{y.shape=}')
             y_emb = self.ar_audio_embedding(y)
-            print(f'{y_emb.shape=}')
+            # print(f'{y_emb.shape=}')
             y_emb = self.ar_audio_prenet(y_emb)
-            print(f'{y_emb.shape=}')
+            # print(f'{y_emb.shape=}')
             y_pos = self.ar_audio_position(y_emb)
-            print(f'{y_pos.shape=}')
+            # print(f'{y_pos.shape=}')
             
             xy_pos = torch.concat([x, y_pos], dim=1)
-            print(f'{xy_pos.shape=}')
+            # print(f'{xy_pos.shape=}')
 
-            print(f'{xy_pos=}')
-            print(f'{xy_attn_mask[0] == float("-inf")=}')
-            print(f'{ar_xy_padding_mask=}')
+            # print(f'{xy_pos=}')
+            # print(f'{xy_attn_mask[0] == float("-inf")=}')
+            # print(f'{ar_xy_padding_mask=}')
 
             output, _ = self.ar_decoder(
                 (xy_pos, None),
@@ -2020,15 +2020,15 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
                 # is_causal=True,
             )
             xy_dec = output
-            print(f'{output.shape=}')
-            print(f'{xy_dec.shape=}')
+            # print(f'{output.shape=}')
+            # print(f'{xy_dec.shape=}')
             if xy_dec.ndim == 2:
                 xy_dec = xy_dec.unsqueeze(0)
 
             logits = self.ar_predict_layer(xy_dec[:, x_len.item():]).permute(0, 2, 1)
             
-            print(f'{logits.shape=}')
-            print(f'{targets.shape=}')
+            # print(f'{logits.shape=}')
+            # print(f'{targets.shape=}')
             # loss
             total_loss = F.cross_entropy(logits, targets, reduction=reduction)
             
