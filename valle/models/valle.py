@@ -2001,7 +2001,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             xy_pos = torch.concat([x, y_pos], dim=1)
 
             print(f'{xy_pos=}')
-            
+            print(f'{ar_xy_padding_mask=}')
             output = self.ar_decoder(
                 xy_pos,
                 xy_attn_mask.bool(),
