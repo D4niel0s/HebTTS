@@ -1846,8 +1846,8 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             num_layers,
             norm_first=norm_first,
             add_prenet=add_prenet,
-            decoder_cls=nn.TransformerDecoder,
-            decoder_layer_cls=nn.TransformerDecoderLayer,
+            decoder_cls=TransformerEncoder,
+            decoder_layer_cls=TransformerEncoderLayer,
             prefix_mode=prefix_mode,
             share_embedding=share_embedding,
             nar_scale_factor=nar_scale_factor,
@@ -2002,11 +2002,10 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             xy_pos = torch.concat([x, y_pos], dim=1)
             
             xy_dec, _ = self.ar_decoder(
-                tgt=xy_pos,
-                memory=torch.zeros(xy_pos.size(0), 1, 768, device=xy_pos.device, dtype=xy_pos.dtype),
-                tgt_mask=xy_attn_mask,
-                tgt_key_padding_mask=ar_xy_padding_mask,
-                tgt_is_causal=True
+                (xy_pos, None),
+                mask=xy_attn_mask,
+                # src_key_padding_mask=xy_padding_mask,
+                # is_causal=True,
             )
 
             logits = self.ar_predict_layer(xy_dec[:, x_len:]).permute(0, 2, 1)
