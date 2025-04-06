@@ -1954,11 +1954,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             # print(f"last hidden state {x.shape}")
             x = self.ar_text_prenet(x)
             # print(f"prenet {x.shape}")
-
-
-
             x = self.ar_text_position(x)
-            print(f'xpos{x.shape=}')
 
             y_len = y_lens.max() + int(self.ar_audio_prepend_bos)  # todo - debugged here!
 
@@ -1994,17 +1990,16 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             new_attn_mask.masked_fill_(xy_attn_mask, float("-inf"))
             xy_attn_mask = new_attn_mask
 
-            print(f'{y.shape=}')
+            
             y_emb = self.ar_audio_embedding(y)
-            print(f'{y_emb.shape=}')
             y_emb = self.ar_audio_prenet(y_emb)
-            print(f'{y_emb.shape=}')
             y_pos = self.ar_audio_position(y_emb)
-            print(f'{y_pos.shape=}')
 
             xy_pos = torch.concat([x, y_pos], dim=1)
 
-            
+
+            print(f'{xy_attn_mask=}')
+            print(f'{xy_padding_mask=}')
             xy_dec, _ = self.ar_decoder(
                 (xy_pos, None),
                 xy_attn_mask,
