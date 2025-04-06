@@ -68,7 +68,7 @@ class SinePositionalEmbedding(nn.Module):
     def extend_pe(self, x):
         """Reset the positional encodings."""
         if self.pe is not None:
-            if self.pe.size(1) >= x.size(1):
+            if self.pe.size(1) >= x.size(1) and self.pe.size(2) == self.dim_model:
                 if self.pe.dtype != x.dtype or self.pe.device != x.device:
                     self.pe = self.pe.to(dtype=x.dtype, device=x.device)
                 return
