@@ -2014,6 +2014,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             print(f'{output=}')
             xy_dec = output[-1]
             print(f'{xy_dec=}')
+            print(f'{xy_dec.shape=}')
 
             logits = self.ar_predict_layer(xy_dec[:, x_len.item():]).permute(0, 2, 1)
             print(f'{logits=}')
