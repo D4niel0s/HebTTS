@@ -98,7 +98,7 @@ class TtsDataModule:
         group.add_argument(
             "--max-duration",
             type=int,
-            default=40.0,
+            default=50,
             help="Maximum pooled recordings duration (seconds) in a "
             "single batch. You can reduce it if it causes CUDA OOM.",
         )
