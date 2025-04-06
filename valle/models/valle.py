@@ -2019,8 +2019,8 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
                 src_key_padding_mask=ar_xy_padding_mask,
                 # is_causal=True,
             )
-            xy_dec = output[-1]
-            print(f'{len(output)=}')
+            xy_dec = output
+            print(f'{output.shape=}')
             print(f'{xy_dec.shape=}')
             if xy_dec.ndim == 2:
                 xy_dec = xy_dec.unsqueeze(0)
