@@ -2004,8 +2004,8 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             xy_dec, _ = self.ar_decoder(
                 (xy_pos, None),
                 mask=xy_attn_mask,
-                # src_key_padding_mask=xy_padding_mask,
-                # is_causal=True,
+                src_key_padding_mask=xy_padding_mask,
+                is_causal=True
             )
             print(f"xy_dec.shape={xy_dec.shape}")
             print(f"{x_len.item()=}")
