@@ -1994,21 +1994,15 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             
             y_emb = self.ar_audio_embedding(y)
             y_emb = self.ar_audio_prenet(y_emb)
-            print(f'{y_emb.shape=}')
             y_pos = self.ar_audio_position(y_emb)
-            print(f'{y_pos.shape=}')
             
             xy_pos = torch.concat([x, y_pos], dim=1)
-            print(f'{xy_pos.shape=}')
-
-            print(f'{xy_attn_mask[0].bool().shape=}')
-            print(f'{ar_xy_padding_mask.shape=}')
-
+            
             xy_dec, _ = self.ar_decoder(
-                xy_pos,
-                ~xy_attn_mask[0].bool(),
-                ~ar_xy_padding_mask,
-                True,
+                (xy_pos, None),
+                mask=xy_attn_mask,
+                # src_key_padding_mask=xy_padding_mask,
+                # is_causal=True,
             )
 
             logits = self.ar_predict_layer(xy_dec[:, x_len:]).permute(0, 2, 1)
