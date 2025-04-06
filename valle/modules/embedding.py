@@ -63,7 +63,7 @@ class SinePositionalEmbedding(nn.Module):
         self.reverse = False
         self.pe = None
 
-        self.extend_pe(torch.zeros(1, 4000, device="cpu"))
+        # self.extend_pe(torch.zeros(1, 4000, device="cpu"))
 
     def extend_pe(self, x):
         """Reset the positional encodings."""
@@ -89,7 +89,6 @@ class SinePositionalEmbedding(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         self.extend_pe(x)
-        print(f'{x.shape=}')
         output = x.unsqueeze(-1) if x.ndim == 2 else x
         output = output * self.x_scale + self.alpha * self.pe[:, : x.size(1)]
         return self.dropout(output)
