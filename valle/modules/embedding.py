@@ -78,7 +78,7 @@ class SinePositionalEmbedding(nn.Module):
         else:
             position = torch.arange(0, x.size(1), dtype=torch.float32, device=x.device).unsqueeze(1)
             
-        div_term = torch.exp(torch.arange(0, self.dim_model, 2,dtype=torch.float32) *
+        div_term = torch.exp(torch.arange(0, self.dim_model, 2,dtype=torch.float32, device=x.device) *
                              -(math.log(10000.0) / self.dim_model))
 
         pe[:, 0::2] = torch.sin(position * div_term)
