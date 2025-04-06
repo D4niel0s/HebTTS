@@ -1903,10 +1903,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
 
         # NOTE: x has been padded in TextTokenCollater
         x_mask = make_pad_mask(x_lens).to(x.device)
-        y_mask = make_pad_mask(y_lens).to(y.device)
-
-        x_mask = ~x_mask
-        y_mask = ~y_mask        
+        y_mask = make_pad_mask(y_lens).to(y.device)       
         
         y_mask_int = y_mask.type(torch.int64)
 
@@ -1944,7 +1941,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             # print(f"forward {text.shape}")
             
 
-            alephbert_tokens = self.alephbert(text, attention_mask=x_mask).last_hidden_state
+            alephbert_tokens = self.alephbert(text, attention_mask=~x_mask).last_hidden_state
             embedding = self.ar_text_embedding(text)
             x = alephbert_tokens + embedding
 
@@ -2000,10 +1997,13 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             
             xy_pos = torch.concat([x, y_pos], dim=1)
 
+            print(f'{xy_attn_mask[0] == float("-inf")}')
+            print(f'{ar_xy_padding_mask}')
+            
             output, _ = self.ar_decoder(
                 (xy_pos, None),
                 mask=~xy_attn_mask.bool(),
-                src_key_padding_mask=~ar_xy_padding_mask.bool(),
+                src_key_padding_mask=ar_xy_padding_mask,
                 # is_causal=True,
             )
             xy_dec = output[-1]
