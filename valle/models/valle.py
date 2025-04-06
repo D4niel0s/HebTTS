@@ -2007,9 +2007,9 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
                 ar_xy_padding_mask,
                 True
             )
-            
+
             if isinstance(xy_dec, list):
-                xy_dec = torch.tensor(xy_dec)
+                xy_dec = torch.tensor(xy_dec, dtype=xy_pos.dtype, device=xy_pos.device)
 
             logits = self.ar_predict_layer(xy_dec[:, x_len.item():]).permute(0, 2, 1)
             # loss
