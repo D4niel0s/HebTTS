@@ -1351,6 +1351,9 @@ class VALLE_ALEPHBERT(VALLF):
         x_mask = make_pad_mask(x_lens).to(x.device)
         y_mask = make_pad_mask(y_lens).to(y.device)
 
+        x_mask = ~x_mask
+        y_mask = ~y_mask
+        
         y_mask_int = y_mask.type(torch.int64)
 
         text = x
@@ -1999,10 +2002,10 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             xy_pos = torch.concat([x, y_pos], dim=1)
             
             xy_dec, _ = self.ar_decoder(
-                (xy_pos, None),
-                # mask=xy_attn_mask[0],
-                # src_key_padding_mask=xy_padding_mask,
-                # is_causal=True,
+                xy_pos,
+                mask=xy_attn_mask,
+                src_key_padding_mask=ar_xy_padding_mask,
+                is_causal=True
             )
 
             logits = self.ar_predict_layer(xy_dec[:, x_len:]).permute(0, 2, 1)

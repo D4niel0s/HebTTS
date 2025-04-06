@@ -47,7 +47,7 @@ def add_model_arguments(parser: argparse.ArgumentParser):
     )
     parser.add_argument(
         "--norm-first",
-        default=True,
+        default=False,
         help="Pre or Post Normalization.",
     )
     parser.add_argument(
