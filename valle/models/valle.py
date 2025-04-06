@@ -2003,7 +2003,8 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
 
             print(f'{xy_attn_mask.shape=}')
             print(f'{xy_padding_mask.shape=}')
-
+            print(f'{xy_attn_mask[0]=}')
+            print(f'{xy_attn_mask[1]=}')
             xy_dec, _ = self.ar_decoder(
                 xy_pos,
                 xy_attn_mask.bool(),
