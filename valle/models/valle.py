@@ -1908,9 +1908,8 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         y_mask_int = y_mask.type(torch.int64)
 
         text = x
-        codes = y.type(torch.int64) * (1 - y_mask_int.unsqueeze(dim=-1))
-        print(f'{codes=}')
-        print(f'{codes.shape=}')
+        codes = y.type(torch.int64) * (1 - y_mask_int)#.unsqueeze(dim=-1))
+
         y, targets = self.pad_y_eos(
             codes[..., 0], y_mask_int, eos_id=NUM_AUDIO_TOKENS
         )
