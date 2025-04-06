@@ -1913,7 +1913,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         y, targets = self.pad_y_eos(
             codes[..., 0], y_mask_int, eos_id=NUM_AUDIO_TOKENS
         )
-
+        print(f'{y==targets=}')
         x_len = x_lens.max()
         # y_lens_max = y_lens.max().cpu()  # TODO - debuged it
 
