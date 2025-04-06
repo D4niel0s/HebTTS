@@ -2003,7 +2003,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             
             xy_dec, _ = self.ar_decoder(
                 tgt=xy_pos,
-                memory=None,
+                memory=torch.zeros(xy_pos.size(0), 1, 768, device=xy_pos.device, dtype=xy_pos.dtype),
                 tgt_mask=xy_attn_mask[0],
                 tgt_key_padding_mask=ar_xy_padding_mask,
                 tgt_is_causal=True
