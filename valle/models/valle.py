@@ -2009,7 +2009,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             )
 
             if isinstance(xy_dec, list):
-                xy_dec = torch.tensor(xy_dec, dtype=xy_pos.dtype, device=xy_pos.device)
+                xy_dec = torch.Tensor(xy_dec, dtype=xy_pos.dtype, device=xy_pos.device)
 
             logits = self.ar_predict_layer(xy_dec[:, x_len.item():]).permute(0, 2, 1)
             # loss
