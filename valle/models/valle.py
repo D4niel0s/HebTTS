@@ -2016,7 +2016,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             print(f'{xy_dec=}')
             print(f'{xy_dec.shape=}')
 
-            logits = self.ar_predict_layer(xy_dec[:, x_len.item():]).permute(0, 2, 1)
+            logits = self.ar_predict_layer(xy_dec[x_len.item():, :]).permute(0, 2, 1)
             print(f'{logits=}')
             # loss
             total_loss = F.cross_entropy(logits, targets, reduction=reduction)
