@@ -2002,8 +2002,8 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
 
             print(f'{xy_pos.shape=}')
 
-            output = self.ar_decoder(
-                xy_pos,
+            output, _ = self.ar_decoder(
+                (xy_pos, None),
                 mask=~xy_attn_mask.bool(),
                 # src_key_padding_mask=xy_padding_mask,
                 # is_causal=True,
@@ -2014,7 +2014,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             print(f'{xy_dec=}')
             print(f'{xy_dec.shape=}')
 
-            logits = self.ar_predict_layer(xy_dec[x_len.item():, :]).permute(0, 2, 1)
+            logits = self.ar_predict_layer(xy_dec[:, x_len.item():]).permute(0, 2, 1)
             print(f'{logits=}')
             # loss
             total_loss = F.cross_entropy(logits, targets, reduction=reduction)
