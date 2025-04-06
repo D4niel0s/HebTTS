@@ -2000,28 +2000,22 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             
             xy_pos = torch.concat([x, y_pos], dim=1)
 
-            print(f'{xy_pos.shape=}')
-
             output, _ = self.ar_decoder(
                 (xy_pos, None),
                 mask=~xy_attn_mask.bool(),
                 # src_key_padding_mask=xy_padding_mask,
                 # is_causal=True,
             )
-
-            print(f'{output=}')
             xy_dec = output[-1]
-            print(f'{xy_dec=}')
-            print(f'{xy_dec.shape=}')
-
+            
             if xy_dec.ndim == 2:
                 xy_dec = xy_dec.unsqueeze(0)
 
             logits = self.ar_predict_layer(xy_dec[:, x_len.item():]).permute(0, 2, 1)
-            print(f'{logits=}')
+            
             # loss
             total_loss = F.cross_entropy(logits, targets, reduction=reduction)
-            print(f'{total_loss=}')
+            
 
             metrics["ArTop10Accuracy"] = self.ar_accuracy_metric(
                 logits.detach(), targets
