@@ -2006,7 +2006,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
 
             output = self.ar_decoder(
                 xy_pos,
-                mask=xy_attn_mask[0],
+                mask=~xy_attn_mask[0].bool(),
                 # src_key_padding_mask=xy_padding_mask,
                 # is_causal=True,
             )
