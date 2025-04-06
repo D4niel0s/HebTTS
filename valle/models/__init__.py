@@ -18,7 +18,7 @@ def add_model_arguments(parser: argparse.ArgumentParser):
     parser.add_argument(
         "--model-name",
         type=str,
-        default="valle-alephbert",
+        default="valle-alephbert-concat",
         help="VALL-E, VALL-F, Transformer.",
     )
     parser.add_argument(
