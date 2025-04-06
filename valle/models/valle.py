@@ -2001,15 +2001,14 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             
             xy_pos = torch.concat([x, y_pos], dim=1)
             
-            xy_dec, _ = self.ar_decoder(
+            output = self.ar_decoder(
                 xy_pos,
                 xy_attn_mask[0].bool(),
                 ar_xy_padding_mask,
                 True
             )
 
-            if isinstance(xy_dec, list):
-                xy_dec = torch.Tensor(xy_dec, dtype=xy_pos.dtype, device=xy_pos.device)
+            xy_dec = output[-1]
 
             logits = self.ar_predict_layer(xy_dec[:, x_len.item():]).permute(0, 2, 1)
             # loss
