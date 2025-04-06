@@ -237,7 +237,7 @@ class VALLF(nn.Module):
                     dropout=0.1,
                     batch_first=True,
                     norm_first=norm_first,
-                    adaptive_layer_norm=True,
+                    # adaptive_layer_norm=True,
                 ),
                 num_layers=int(num_layers * nar_scale_factor),
                 norm=AdaptiveLayerNorm(
