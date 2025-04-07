@@ -345,8 +345,6 @@ class TtsDataModule:
             # print(f"filtered! {len(cuts_train.to_eager())} - {length_before_filter}")
 
         # print(f"filtered! {len(cuts_train.to_eager())}")
-        logging.info("here")
-        print("here!")
 
         if self.args.bucketing_sampler:
             logging.info("Using DynamicBucketingSampler")
