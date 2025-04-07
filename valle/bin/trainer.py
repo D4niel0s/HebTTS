@@ -245,7 +245,7 @@ def get_parser():
     parser.add_argument(
         "--dtype",
         type=str,
-        default="float16",
+        default="bfloat16",
         help="Training dtype: float32 bfloat16 float16.",
     )
 
@@ -817,7 +817,7 @@ def train_one_epoch(
             # Calculate validation loss in Rank 0
             model.eval()
             logging.info("Computing validation loss")
-            with torch.amp.autocast(dtype=dtype):
+            with torch.amp.autocast(dtype=dtype, device_type='cuda'):
                 valid_info = compute_validation_loss(
                     params=params,
                     model=model,
