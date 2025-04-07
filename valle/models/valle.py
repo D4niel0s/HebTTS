@@ -2043,15 +2043,17 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         # Non-AR Decoders
         if self.ar_audio_prepend_bos:
             y = y[:, 1:]
+
         if train_stage in [0, 2]:
             num_nar_layers = self.num_quantizers - 1
+
             nar_stage = self.rng.choices(
                 [_k for _k in range(1, self.num_quantizers)],
                 weights=[1.0 / num_nar_layers] * num_nar_layers,
                 k=1,
             )[0]
 
-            alephbert_tokens = self.alephbert(text, attention_mask=x_mask).last_hidden_state
+            alephbert_tokens = self.alephbert(text, attention_mask=~x_mask).last_hidden_state
             embedding = self.ar_text_embedding(text)
             x = alephbert_tokens + embedding
 
@@ -2064,6 +2066,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
 
             y_len = y_lens.max()
             targets = codes[..., nar_stage] + NUM_AUDIO_TOKENS * y_mask_int
+
             if self.prefix_mode in [2, 4]:
                 xy_padding_mask = torch.concat(
                     [
@@ -2077,18 +2080,20 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
 
             y_pos = self.nar_audio_prenet(y_emb)
             y_pos = self.nar_audio_position(y_pos)
+
             xy_pos = torch.concat([x, y_pos], dim=1)
+
             xy_dec, _ = self.nar_decoder(
                 (xy_pos, self.nar_stage_embeddings[nar_stage - 1].weight),
                 src_key_padding_mask=xy_padding_mask,
                 # is_causal=False,
             )
+
             xy_dec = xy_dec[:, x_lens.max() + prefix_len :]
+
             if self.prefix_mode == 4:
                 prefix_len = 0  # reset for Top10Accuracy metric
-            logits = self.nar_predict_layers[nar_stage - 1](xy_dec).permute(
-                0, 2, 1
-            )
+            logits = self.nar_predict_layers[nar_stage - 1](xy_dec).permute(0, 2, 1)
 
             # loss
             total_length = (y_lens).sum().type(torch.float32)
