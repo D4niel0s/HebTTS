@@ -60,7 +60,7 @@ def add_model_arguments(parser: argparse.ArgumentParser):
     parser.add_argument(
         "--prefix-mode",
         type=int,
-        default=0,
+        default=4,
         help="The mode for how to prefix VALL-E NAR Decoder, "
         "0: no prefix, 1: 0 to random, 2: random to random, 4: chunk of pre or post utterance.",
     )
