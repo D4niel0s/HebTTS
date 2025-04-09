@@ -2094,9 +2094,9 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             print(f'{self.nar_stage_embeddings[nar_stage - 1].weight=}')
             print(f'{xy_padding_mask=}')
 
-            input_to_dec = tuple([xy_pos, self.nar_stage_embeddings[nar_stage - 1].weight])
+
             xy_dec, _ = self.nar_decoder(
-                input_to_dec,
+                (xy_pos, self.nar_stage_embeddings[nar_stage - 1].weight),
                 src_key_padding_mask=xy_padding_mask,
                 # is_causal=False,
             )
