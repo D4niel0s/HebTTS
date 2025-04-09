@@ -115,7 +115,7 @@ def get_parser():
     parser.add_argument(
         "--num-epochs",
         type=int,
-        default=4,    # num_epochs*corpus_size ~ 1.2M for AR and 200k for NAR
+        default=1,    # num_epochs*corpus_size ~ 1.2M for AR and 200k for NAR
         help="Number of epochs to train.",
     )
 
@@ -265,7 +265,7 @@ def get_parser():
     parser.add_argument(
         "--train-stage",
         type=int,
-        default=1,
+        default=2,
         help="""0: train all modules, For VALL-E, support 1: AR Decoder 2: NAR Decoder(s)
         """,
     )
@@ -273,7 +273,7 @@ def get_parser():
     parser.add_argument(
         "--visualize",
         type=str2bool,
-        default=True,
+        default=False,
         help="visualize model results in eval step.",
     )
 
