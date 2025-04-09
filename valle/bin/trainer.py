@@ -675,6 +675,7 @@ def train_one_epoch(
                     batch=batch,
                     is_training=True,
                 )
+                print('###COMPUTES LOSS!###')
             # summary stats
             tot_loss = (
                 tot_loss * (1 - 1 / params.reset_interval)
@@ -831,14 +832,8 @@ def train_one_epoch(
                 f"Maximum memory allocated so far is {torch.cuda.max_memory_allocated()//1000000}MB"
             )
 
-            if tb_writer is not None:
-                valid_info.write_summary(
-                    tb_writer, "train/valid_", params.batch_idx_train
-                )
 
-                wandb.log({"train/valid_loss": valid_info.norm_items()[0][1]}, step=params.batch_idx_train)
-
-
+            wandb.log({"train/valid_loss": valid_info.norm_items()[0][1]}, step=params.batch_idx_train)
 
             model.train()
 
