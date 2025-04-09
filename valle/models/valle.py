@@ -2090,9 +2090,13 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
 
             xy_pos = torch.concat([x, y_pos], dim=1)
             print(f'{xy_pos=}')
-            
+            print(f'{self.nar_stage_embeddings[nar_stage - 1]=}')
+            print(f'{self.nar_stage_embeddings[nar_stage - 1].weight=}')
+            print(f'{xy_padding_mask=}')
+
+            input_to_dec = tuple([xy_pos, self.nar_stage_embeddings[nar_stage - 1].weight])
             xy_dec, _ = self.nar_decoder(
-                (xy_pos, self.nar_stage_embeddings[nar_stage - 1].weight),
+                input_to_dec,
                 src_key_padding_mask=xy_padding_mask,
                 # is_causal=False,
             )
