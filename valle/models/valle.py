@@ -2054,15 +2054,20 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             )[0]
 
             alephbert_tokens = self.alephbert(text, attention_mask=~x_mask).last_hidden_state
+            print(f'{alephbert_tokens=}')
             embedding = self.ar_text_embedding(text)
+            print(f'{embedding=}')
             x = alephbert_tokens + embedding
-
+            print(f'{x=}')
             x = self.nar_text_prenet(x)
+            print(f'{x=}')
             x = self.nar_text_position(x)
+            print(f'{x=}')
 
             y_emb, prefix_len = self._prepare_prompts(
                 y, y_lens, codes, nar_stage, y_prompts_codes
             )
+            print(f'{y_emb=}')
 
             y_len = y_lens.max()
             targets = codes[..., nar_stage] + NUM_AUDIO_TOKENS * y_mask_int
@@ -2079,10 +2084,13 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
                 targets = targets[:, prefix_len:]
 
             y_pos = self.nar_audio_prenet(y_emb)
+            print(f'{y_pos=}')
             y_pos = self.nar_audio_position(y_pos)
+            print(f'{y_pos=}')
 
             xy_pos = torch.concat([x, y_pos], dim=1)
-
+            print(f'{xy_pos=}')
+            
             xy_dec, _ = self.nar_decoder(
                 (xy_pos, self.nar_stage_embeddings[nar_stage - 1].weight),
                 src_key_padding_mask=xy_padding_mask,
