@@ -301,11 +301,18 @@ class TransformerEncoderLayer(nn.Module):
             )
             x = x + self._ff_block(self.norm2(x, stage_embedding))
         else:
-            x = self.norm1(
-                x + self._sa_block(x, src_mask, src_key_padding_mask),
-                stage_embedding,
-            )
-            x = self.norm2(x + self._ff_block(x), stage_embedding)
+            if not stage_embedding is None:
+                x = self.norm1(
+                    (x + self._sa_block(x, src_mask, src_key_padding_mask),
+                    stage_embedding,)
+                )
+                x = self.norm2((x + self._ff_block(x), stage_embedding))
+            else:
+                x = self.norm1(
+                    x + self._sa_block(x, src_mask, src_key_padding_mask),
+                    stage_embedding,
+                )
+                x = self.norm2(x + self._ff_block(x), stage_embedding)
 
         if is_src_tuple:
             return (x, stage_embedding)
