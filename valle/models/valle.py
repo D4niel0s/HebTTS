@@ -2162,7 +2162,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
         x_mask = make_pad_mask(x_lens).to(x.device)
         text = x
 
-        alephbert_tokens = self.alephbert(text, attention_mask=x_mask).last_hidden_state
+        alephbert_tokens = self.alephbert(text, attention_mask=~x_mask).last_hidden_state
         embedding = self.ar_text_embedding(text)
         x = alephbert_tokens + embedding
 
