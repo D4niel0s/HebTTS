@@ -35,6 +35,7 @@ def append_chars_subwords(output_dir):
         new_cut_list = list()
 
         for c in tqdm(cuts, "tokenizing text"):
+            print(f'{c.supervisions[0].text=}')
             text = c.supervisions[0].text
 
             char_tokens = tokenize_text(chars_tokenizer, text=text)
