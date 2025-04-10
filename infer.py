@@ -96,7 +96,7 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
                 [(encoded_frames.transpose(2, 1), None)]
             )
 
-        torchaudio.save(audio_path, samples[0].cpu(), 24000)
+        torchaudio.save(audio_path, samples[0].detach().cpu(), 24000)
 
 
 
