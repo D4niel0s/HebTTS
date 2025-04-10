@@ -2251,7 +2251,7 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
             text_len = text_len - (enrolled_len - 2)
             assert text.shape[0] == 1
 
-        alephbert_tokens = self.alephbert(text, attention_mask=x_mask).last_hidden_state
+        alephbert_tokens = self.alephbert(text, attention_mask=~x_mask).last_hidden_state
         embedding = self.ar_text_embedding(text)
         x = alephbert_tokens + embedding
         x = self.nar_text_prenet(x)
