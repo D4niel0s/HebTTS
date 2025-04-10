@@ -122,8 +122,8 @@ def get_args():
     parser.add_argument(
         "--text",
         type=str,
+        default="ואם אתה מצליח לשפר את איכות החיזוי אתה יכול להציל חיי אדם",
         help="Text to be synthesized.",
-        required=True
     )
 
     parser.add_argument(
@@ -157,8 +157,8 @@ def get_args():
     parser.add_argument(
         "--output-dir",
         type=Path,
-        help="/home/yandex/APDL2425a/group_6/Documents/output_wavs",
-        required=True
+        default="/home/yandex/APDL2425a/group_6/Documents/output_wavs",
+        help="Output directory to save the synthesized audio.",
     )
 
     parser.add_argument(
