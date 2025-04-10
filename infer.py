@@ -108,14 +108,14 @@ def get_args():
     parser.add_argument(
         "--speaker",
         type=str,
-        default="osim",
+        default="shaul",
         help="A speaker from speakers.yaml",
     )
 
     parser.add_argument(
         "--mbd",
         type=bool,
-        default=False,
+        default=True,
         help="use of multi band diffusion",
     )
 
@@ -129,35 +129,35 @@ def get_args():
     parser.add_argument(
         "--speaker-yaml",
         type=str,
-        default="speakers/speakers.yaml",
+        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/speakers/speakers.yaml",
         help="speaker yaml path",
     )
 
     parser.add_argument(
         "--vocab-file",
         type=str,
-        default="tokenizer/vocab.txt",
+        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/tokenizer/vocab.txt",
         help="vocab file for AlephBert"
     )
 
     parser.add_argument(
         "--tokens-file",
         type=str,
-        default="tokenizer/unique_words_tokens_all.k2symbols",
+        default="/home/yandex/APDL2425a/group_6/Documents/unique_text_tokens.k2symbols",
         help="tokens file path"
     )
 
     parser.add_argument(
         "--checkpoint",
         type=str,
-        default="ckpt.pt",
+        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/valle/exp/valle_dev/best-valid-loss.pt",
         help="Path to the saved checkpoint.",
     )
 
     parser.add_argument(
         "--output-dir",
         type=Path,
-        help="Path to the inferred wavs.",
+        help="/home/yandex/APDL2425a/group_6/Documents/output_wavs",
         required=True
     )
 
