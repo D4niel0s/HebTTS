@@ -127,7 +127,7 @@ def get_args():
     parser.add_argument(
         "--text",
         type=str,
-        default="בראשית ברא אלהים את השמים ואת הארץ",
+        default="מביא הרבה מהסיבות",
         help="Text to be synthesized.",
     )
 
