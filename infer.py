@@ -108,7 +108,7 @@ def get_args():
     parser.add_argument(
         "--speaker",
         type=str,
-        default="osim",
+        default="geek",
         help="A speaker from speakers.yaml",
     )
 
