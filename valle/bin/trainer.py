@@ -213,7 +213,7 @@ def get_parser():
     parser.add_argument(
         "--keep-last-k",
         type=int,
-        default=5,
+        default=6,
         help="""Only keep this number of checkpoints on disk.
         For instance, if it is 3, there are only 3 checkpoints
         in the exp-dir with filenames `checkpoint-xxx.pt`.
