@@ -54,10 +54,13 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
 
     audio_prompts = list()
     encoded_frames = tokenize_audio(audio_tokenizer, prompt_audio)
+    print(f'{encoded_frames.shape=}')
+    print(f'{encoded_frames[0][0].shape=}')
     audio_prompts.append(encoded_frames[0][0])
     audio_prompts = torch.concat(audio_prompts, dim=-1).transpose(2, 1)
     audio_prompts = audio_prompts.to(device)
 
+    print(f'{audio_prompts.shape=}')
     for n, text in enumerate(texts):
         text_without_space = [replace_chars(f"{prompt_text} {text}").strip().replace(" ", "_")]
         tokens = alef_bert_tokenizer._tokenize(text_without_space)
