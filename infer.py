@@ -60,9 +60,14 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
 
     for n, text in enumerate(texts):
         text_without_space = [replace_chars(f"{prompt_text} {text}").strip().replace(" ", "_")]
-        tokens = alef_bert_tokenizer._tokenize(text_without_space)
+
+        # tokens = alef_bert_tokenizer._tokenize(text_without_space)
+        tokens = alef_bert_tokenizer._tokenize([replace_chars(f"{prompt_text} {text}").strip()])
+
         prompt_text_without_space = [replace_chars(f"{prompt_text}").strip().replace(" ", "_")]
-        prompt_tokens = alef_bert_tokenizer._tokenize(prompt_text_without_space)
+
+        # prompt_tokens = alef_bert_tokenizer._tokenize(prompt_text_without_space)
+        prompt_tokens = alef_bert_tokenizer._tokenize([replace_chars(f"{prompt_text}").strip()])
 
         text_tokens, text_tokens_lens = text_collater(
             [
@@ -96,7 +101,7 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
                 [(encoded_frames.transpose(2, 1), None)]
             )
 
-        torchaudio.save(audio_path, samples[0].detach().cpu(), 16000)
+        torchaudio.save(audio_path, samples[0].detach().cpu(), 24000)
 
 
 
