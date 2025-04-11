@@ -143,7 +143,7 @@ def get_args():
     parser.add_argument(
         "--tokens-file",
         type=str,
-        default="/home/yandex/APDL2425a/group_6/Documents/unique_text_tokens.k2symbols",
+        default="/home/yandex/APDL2425a/group_6/Documents/unique_words_tokens.k2symbols",
         help="tokens file path"
     )
 
