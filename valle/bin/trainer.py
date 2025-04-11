@@ -675,7 +675,6 @@ def train_one_epoch(
                     batch=batch,
                     is_training=True,
                 )
-                print('###COMPUTES LOSS!###')
             # summary stats
             tot_loss = (
                 tot_loss * (1 - 1 / params.reset_interval)
