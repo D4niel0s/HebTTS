@@ -60,14 +60,10 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
 
     for n, text in enumerate(texts):
         text_without_space = [replace_chars(f"{prompt_text} {text}").strip().replace(" ", "_")]
-
-        # tokens = alef_bert_tokenizer._tokenize(text_without_space)
-        tokens = alef_bert_tokenizer._tokenize([replace_chars(f"{prompt_text} {text}").strip()])
+        tokens = alef_bert_tokenizer._tokenize(text_without_space)
 
         prompt_text_without_space = [replace_chars(f"{prompt_text}").strip().replace(" ", "_")]
-
-        # prompt_tokens = alef_bert_tokenizer._tokenize(prompt_text_without_space)
-        prompt_tokens = alef_bert_tokenizer._tokenize([replace_chars(f"{prompt_text}").strip()])
+        prompt_tokens = alef_bert_tokenizer._tokenize(prompt_text_without_space)
 
         text_tokens, text_tokens_lens = text_collater(
             [
