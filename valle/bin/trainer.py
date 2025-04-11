@@ -122,7 +122,7 @@ def get_parser():
     parser.add_argument(
         "--start-epoch",
         type=int,
-        default=5,
+        default=1,
         help="""Resume training from this epoch. It should be positive.
         If larger than 1, it will load checkpoint from
         exp-dir/epoch-{start_epoch-1}.pt
@@ -206,14 +206,14 @@ def get_parser():
     parser.add_argument(
         "--valid-interval",
         type=int,
-        default=10000,
+        default=25000,
         help="""Run validation if batch_idx %% valid_interval is 0.""",
     )
 
     parser.add_argument(
         "--keep-last-k",
         type=int,
-        default=15,
+        default=5,
         help="""Only keep this number of checkpoints on disk.
         For instance, if it is 3, there are only 3 checkpoints
         in the exp-dir with filenames `checkpoint-xxx.pt`.
@@ -245,7 +245,7 @@ def get_parser():
     parser.add_argument(
         "--dtype",
         type=str,
-        default="bfloat16",
+        default="float16",
         help="Training dtype: float32 bfloat16 float16.",
     )
 
@@ -258,14 +258,14 @@ def get_parser():
     parser.add_argument(
         "--filter-max-duration",
         type=float,
-        default=20.0,
+        default=23.0,
         help="Keep only utterances with duration < this.",
     )
 
     parser.add_argument(
         "--train-stage",
         type=int,
-        default=2,
+        default=0,
         help="""0: train all modules, For VALL-E, support 1: AR Decoder 2: NAR Decoder(s)
         """,
     )
