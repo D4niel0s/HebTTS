@@ -127,7 +127,7 @@ def get_args():
     parser.add_argument(
         "--text",
         type=str,
-        default="אוקיי אז זה מלא מלא טקסט, אני לא יודע אם זה מספיק או לא, אבל אני מקווה שזה מספיק כדי שהמודל יוכל ללמוד",
+        default="אחי אתה לא תאמין למה ששמעתי היום",
         help="Text to be synthesized.",
     )
 
