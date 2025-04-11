@@ -54,7 +54,7 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
 
     audio_prompts = list()
     encoded_frames = tokenize_audio(audio_tokenizer, prompt_audio)
-    print(f'{encoded_frames.shape=}')
+    print(f'{torch.Tensor(encoded_frames).shape=}')
     print(f'{encoded_frames[0][0].shape=}')
     audio_prompts.append(encoded_frames[0][0])
     audio_prompts = torch.concat(audio_prompts, dim=-1).transpose(2, 1)
