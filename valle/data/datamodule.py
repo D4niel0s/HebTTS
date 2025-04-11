@@ -219,7 +219,7 @@ class TtsDataModule:
         parser.add_argument(
             "--text-tokens-path",
             type=str,
-            default="/home/yandex/APDL2425a/group_6/Documents/unique_words_tokens.k2symbols",
+            default="/home/yandex/APDL2425a/group_6/Documents/unique_chars_tokens.k2symbols",
             help="Path to the unique text tokens file",
         ) # TODO change it
 
