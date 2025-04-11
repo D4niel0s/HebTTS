@@ -127,7 +127,7 @@ def get_args():
     parser.add_argument(
         "--text",
         type=str,
-        default="אחי אתה לא תאמין למה ששמעתי היום",
+        default="ברוכים הבאים לפודקאסט עושים היסטוריה",
         help="Text to be synthesized.",
     )
 
