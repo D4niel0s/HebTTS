@@ -116,7 +116,7 @@ def get_args():
     parser.add_argument(
         "--mbd",
         type=bool,
-        default=True,
+        default=False,
         help="use of multi band diffusion",
     )
 
