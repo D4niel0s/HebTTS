@@ -150,7 +150,7 @@ def get_args():
     parser.add_argument(
         "--checkpoint",
         type=str,
-        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/valle/exp/valle_dev/epoch-1.pt",
+        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/valle/exp/valle_dev/checkpoint-90000.pt",
         help="Path to the saved checkpoint.",
     )
 
