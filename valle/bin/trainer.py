@@ -115,14 +115,14 @@ def get_parser():
     parser.add_argument(
         "--num-epochs",
         type=int,
-        default=1,    # num_epochs*corpus_size ~ 1.2M for AR and 200k for NAR
+        default=2,    # num_epochs*corpus_size ~ 1.2M for AR and 200k for NAR
         help="Number of epochs to train.",
     )
 
     parser.add_argument(
         "--start-epoch",
         type=int,
-        default=1,
+        default=2,
         help="""Resume training from this epoch. It should be positive.
         If larger than 1, it will load checkpoint from
         exp-dir/epoch-{start_epoch-1}.pt
