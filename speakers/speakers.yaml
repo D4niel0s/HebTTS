@@ -9,3 +9,15 @@ geek:
 shaul:
   text-prompt: "ובשביל להבין למה מחיר הדלק כל כך עלה, צריך לחזור שנתיים אחורנית."
   audio-prompt: "shaul.wav"
+
+arbaby:
+  text-prompt: "את עוץ בכרו ואת בוז אחיו ואת קמואל אבי ארם ואת ואת כשד ואת חזו ואת פלדש ואת ידלף ואת בתואל"
+  audio-prompt: "Arbaby.wav"
+
+mark:
+  text-prompt: "אוי לא הפלתי את כל הסופגניות שלי שוב מה אני אעשה כל חנוכה זה קורה לי"
+  audio-prompt: "Mark.wav"
+
+induction_hater:
+  text-prompt: "שוב אינדוקציה? לא לא לא לא לא תעיפו את האינדוקציה קיבינימט צריך לשרוף את המושג הזה שנקרא אינדוקציה"
+  audio-prompt: "Induction_Hater.wav"
