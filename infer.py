@@ -169,7 +169,7 @@ def get_args():
     parser.add_argument(
         "--top-k",
         type=int,
-        default=40,
+        default=60,
         help="top k sampling",
     )
 
