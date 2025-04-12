@@ -115,7 +115,7 @@ def get_parser():
     parser.add_argument(
         "--num-epochs",
         type=int,
-        default=3,    # num_epochs*corpus_size ~ 1.2M for AR and 200k for NAR
+        default=1,    # num_epochs*corpus_size ~ 1.2M for AR and 200k for NAR
         help="Number of epochs to train.",
     )
 
@@ -132,7 +132,7 @@ def get_parser():
     parser.add_argument(
         "--start-batch",
         type=int,
-        default=0,
+        default=200000,
         help="""If positive, --start-epoch is ignored and
         it loads the checkpoint from exp-dir/checkpoint-{start_batch}.pt
         """,
@@ -265,7 +265,7 @@ def get_parser():
     parser.add_argument(
         "--train-stage",
         type=int,
-        default=1,
+        default=2,
         help="""0: train all modules, For VALL-E, support 1: AR Decoder 2: NAR Decoder(s)
         """,
     )
