@@ -127,7 +127,7 @@ def get_args():
     parser.add_argument(
         "--text",
         type=str,
-        default="אוי לא הפלתי את כל המצות שלי בסדר ככה זה פסח אתם יודעים זה קורה לי כל שנה",
+        default="אוילאהפלתיאתכלהמצותשליבסדרככהזהפסחאתםיודעיםזהקורהליכלשנה",
         help="Text to be synthesized.",
     )
 
