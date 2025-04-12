@@ -127,7 +127,7 @@ def get_args():
     parser.add_argument(
         "--text",
         type=str,
-        default="אוילאהפלתיאתכלהמצותשליבסדרככהזהפסחאתםיודעיםזהקורהליכלשנה",
+        default="אוי לא נפלו לי כל הספוגניות בסדר אתם יודעים איך אני זה קורה לי כל שנה",
         help="Text to be synthesized.",
     )
 
