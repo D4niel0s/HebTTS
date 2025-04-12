@@ -11,7 +11,7 @@ shaul:
   audio-prompt: "shaul.wav"
 
 arbaby:
-  text-prompt: "את עוץ בכרו ואת בוז אחיו ואת קמואל אבי ארם ואת ואת כשד ואת חזו ואת פלדש ואת ידלף ואת בתואל"
+  text-prompt: "ואת קמואל אבי ארם ואת ואת כשד ואת חזו",
   audio-prompt: "Arbaby.wav"
 
 mark:
