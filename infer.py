@@ -173,6 +173,13 @@ def get_args():
         help="top k sampling",
     )
 
+    parser.add_argument(
+        "--temperature",
+        type=int,
+        default=1.3,
+        help="Temperature for sampling",
+    )
+
 
     return parser.parse_args()
 
@@ -264,6 +271,7 @@ if __name__ == '__main__':
         prompt_text=speaker["text-prompt"],
         prompt_audio=audio_prompt,
         top_k=args.top_k,
+        temperature=args.temperature,
         args=args
     )
 
