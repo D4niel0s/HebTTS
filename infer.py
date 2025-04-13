@@ -127,7 +127,7 @@ def get_args():
     parser.add_argument(
         "--text",
         type=str,
-        default="היי לכולמ, חג פסח סמח אחימ שלי היקרימ אוהב אתחמ",
+        default="ואם אתה מצליח לשפר את איכות החיזוי, אתה יכול להציל חיי אדם",
         help="Text to be synthesized.",
     )
 
