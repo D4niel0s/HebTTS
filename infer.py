@@ -133,7 +133,7 @@ def get_args():
     parser.add_argument(
         "--text",
         type=str,
-        default="יואו אח שלנו מה קורה",
+        default="חג שבועות שמח לכל המאזינים, אם זה מצליח אני פאקינג מלך",
         help="Text to be synthesized.",
     )
 
