@@ -108,8 +108,7 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
             encoded_frames_reshaped = encoded_frames.permute(0, 2, 1)  # Now shape [1, 8, 529]
 
             # Create a proper tuple format as expected by your EnCodec version
-            scale_factor = torch.ones(1, dtype=torch.float32, device=device)  # Default scale factor
-            encoded_tuple = (encoded_frames_reshaped, scale_factor)
+            encoded_tuple = (encoded_frames_reshaped, None)
 
             # Now decode
             with torch.no_grad():
