@@ -122,7 +122,7 @@ def get_parser():
     parser.add_argument(
         "--start-epoch",
         type=int,
-        default=3,
+        default=2,
         help="""Resume training from this epoch. It should be positive.
         If larger than 1, it will load checkpoint from
         exp-dir/epoch-{start_epoch-1}.pt
@@ -132,7 +132,7 @@ def get_parser():
     parser.add_argument(
         "--start-batch",
         type=int,
-        default=40000,
+        default=0,
         help="""If positive, --start-epoch is ignored and
         it loads the checkpoint from exp-dir/checkpoint-{start_batch}.pt
         """,
@@ -265,7 +265,7 @@ def get_parser():
     parser.add_argument(
         "--train-stage",
         type=int,
-        default=1,
+        default=2,
         help="""0: train all modules, For VALL-E, support 1: AR Decoder 2: NAR Decoder(s)
         """,
     )
