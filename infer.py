@@ -100,7 +100,7 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
             )
         else:
             samples = audio_tokenizer.decode(
-                [encoded_frames.transpose(2, 1)]
+                [(encoded_frames, None)]
             )
         
         torchaudio.save(audio_path, samples[0].detach().cpu(), 24000)
