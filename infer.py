@@ -169,14 +169,14 @@ def get_args():
     parser.add_argument(
         "--top-k",
         type=int,
-        default=30,
+        default=40,
         help="top k sampling",
     )
 
     parser.add_argument(
         "--temperature",
         type=int,
-        default=0.5,
+        default=0.8,
         help="Temperature for sampling",
     )
 
