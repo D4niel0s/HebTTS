@@ -99,20 +99,23 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
             )
         else:
             from encodec import EncodecModel
-
             # Load the model
             audio_tokenizer = EncodecModel.encodec_model_24khz()
             audio_tokenizer.eval()
 
             # Assuming encoded_frames shape is [1, 529, 8]
-            # Reshape encoded_frames correctly for EnCodec
+            # Reshape encoded_frames correctly
             encoded_frames_reshaped = encoded_frames.permute(0, 2, 1)  # Now shape [1, 8, 529]
 
-            # Try direct decoding without creating a dictionary
-            with torch.no_grad():
-                samples = audio_tokenizer.decode(encoded_frames_reshaped)
+            # Create a proper tuple format as expected by your EnCodec version
+            scale_factor = torch.ones(1, dtype=torch.float32)  # Default scale factor
+            encoded_tuple = (encoded_frames_reshaped, scale_factor)
 
-            # samples will be a tensor of audio samples
+            # Now decode
+            with torch.no_grad():
+                samples = audio_tokenizer.decode([encoded_tuple])  # Note the list wrapper
+
+            # Process the output
             audio = samples.squeeze()
             torchaudio.save(audio_path, audio.detach().cpu(), 24000)
 
