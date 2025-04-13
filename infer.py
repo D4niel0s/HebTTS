@@ -176,7 +176,7 @@ def get_args():
     parser.add_argument(
         "--temperature",
         type=int,
-        default=1.1,
+        default=1,
         help="Temperature for sampling",
     )
 

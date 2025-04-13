@@ -2220,10 +2220,9 @@ class VALLE_ALEPHBERT_CONCAT(VALLF):
                 or (y.shape[1] - prompts.shape[1]) > x_lens.max() * 16
             ):
                 if prompts.shape[1] == y.shape[1]:
-                    # raise SyntaxError(
-                    #     "well trained model shouldn't reach here."
-                    # )
-                    ...
+                    raise SyntaxError(
+                        "well trained model shouldn't reach here."
+                    )
 
                 print(f"VALL-E EOS [{prompts.shape[1]} -> {y.shape[1]}]")
                 break
