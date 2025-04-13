@@ -98,7 +98,7 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
                 encoded_frames.transpose(2, 1)
             )
         else:
-
+            from encodec import EncodecModel
             audio_tokenizer = EncodecModel.encodec_model_24khz()
             audio_tokenizer.eval()  # Make sure it's in eval mode
 
