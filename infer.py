@@ -100,23 +100,46 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
         else:
             from encodec import EncodecModel
             # Load the model
+            # audio_tokenizer = EncodecModel.encodec_model_24khz()
+            # audio_tokenizer.eval()
+
+            # # Assuming encoded_frames shape is [1, 529, 8]
+            # # Reshape encoded_frames correctly
+            # encoded_frames_reshaped = encoded_frames.permute(0, 2, 1)  # Now shape [1, 8, 529]
+
+            # # Create a proper tuple format as expected by your EnCodec version
+            # scale_factor = torch.ones(1, dtype=torch.float32)  # Default scale factor
+            # encoded_tuple = (encoded_frames_reshaped, scale_factor)
+
+            # # Now decode
+            # with torch.no_grad():
+            #     samples = audio_tokenizer.decode([encoded_tuple])  # Note the list wrapper
+
+            # # Process the output
+            # audio = samples.squeeze()
+
+
+            # Load the model
             audio_tokenizer = EncodecModel.encodec_model_24khz()
             audio_tokenizer.eval()
 
             # Assuming encoded_frames shape is [1, 529, 8]
-            # Reshape encoded_frames correctly
+            # Reshape to what EnCodec expects
             encoded_frames_reshaped = encoded_frames.permute(0, 2, 1)  # Now shape [1, 8, 529]
 
-            # Create a proper tuple format as expected by your EnCodec version
-            scale_factor = torch.ones(1, dtype=torch.float32)  # Default scale factor
-            encoded_tuple = (encoded_frames_reshaped, scale_factor)
+            # Create scale tensor (required for decoding)
+            scale = torch.ones((1,), device=encoded_frames.device)
 
-            # Now decode
+            # Prepare the input format that EnCodec 0.1.1 expects
+            encoded_tuple = [(encoded_frames_reshaped, scale)]
+
+            # Decode
             with torch.no_grad():
-                samples = audio_tokenizer.decode([encoded_tuple])  # Note the list wrapper
+                samples = audio_tokenizer.decode(encoded_tuple)
 
             # Process the output
             audio = samples.squeeze()
+
             torchaudio.save(audio_path, audio.detach().cpu(), 24000)
 
 
