@@ -90,6 +90,8 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
             temperature=temperature,
         )
 
+        print(encoded_frames.shape)
+        
         audio_path = f"{output_dir}/sample_{n}.wav"
 
         if args.mbd:
