@@ -99,26 +99,20 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
             )
         else:
             from encodec import EncodecModel
-            audio_tokenizer = EncodecModel.encodec_model_24khz()
-            audio_tokenizer.eval()  # Make sure it's in eval mode
 
-            # Reshape encoded_frames correctly
-            # EnCodec decode expects: [batch_size, n_q, seq_len]
+            # Load the model
+            audio_tokenizer = EncodecModel.encodec_model_24khz()
+            audio_tokenizer.eval()
+
+            # Assuming encoded_frames shape is [1, 529, 8]
+            # Reshape encoded_frames correctly for EnCodec
             encoded_frames_reshaped = encoded_frames.permute(0, 2, 1)  # Now shape [1, 8, 529]
 
-            # Create a proper codes_list as expected by EnCodec
-            codes = {
-                "codes": encoded_frames_reshaped,
-                # Scale is needed if you're using variable bandwidth, otherwise can be omitted
-                "scale": torch.ones(1, dtype=torch.float32)
-            }
-
-            # Now decode
+            # Try direct decoding without creating a dictionary
             with torch.no_grad():
-                samples = audio_tokenizer.decode([codes])  # Note the list
+                samples = audio_tokenizer.decode(encoded_frames_reshaped)
 
-            # samples will be a tensor of shape [1, 1, T] where T is the audio length
-            # You may want to squeeze it
+            # samples will be a tensor of audio samples
             audio = samples.squeeze()
             torchaudio.save(audio_path, audio.detach().cpu(), 24000)
 
@@ -127,7 +121,7 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
             #     [(encoded_frames.transpose(2, 1), None)]
             # )
         
-        torchaudio.save(audio_path, samples[0].detach().cpu(), 24000)
+        # torchaudio.save(audio_path, samples[0].detach().cpu(), 24000)
 
 
 
