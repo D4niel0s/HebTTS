@@ -127,7 +127,7 @@ def get_args():
     parser.add_argument(
         "--text",
         type=str,
-        default="ואם אתה מצליח לשפר את איכות החיזוי, אתה יכול להציל חיי אדם",
+        default="יואו אח שלנו מה קורה",
         help="Text to be synthesized.",
     )
 
@@ -176,7 +176,7 @@ def get_args():
     parser.add_argument(
         "--temperature",
         type=int,
-        default=1,
+        default=0,
         help="Temperature for sampling",
     )
 
