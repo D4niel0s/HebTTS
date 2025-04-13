@@ -115,7 +115,7 @@ def get_parser():
     parser.add_argument(
         "--num-epochs",
         type=int,
-        default=1,    # num_epochs*corpus_size ~ 1.2M for AR and 200k for NAR
+        default=3,    # num_epochs*corpus_size ~ 1.2M for AR and 200k for NAR
         help="Number of epochs to train.",
     )
 
