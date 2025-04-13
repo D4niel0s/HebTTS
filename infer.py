@@ -120,7 +120,8 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
 
 
             # Load the model
-            audio_tokenizer = EncodecModel.encodec_model_24khz()
+            device = encoded_frames.device  # This gets the device of your encoded_frames
+            audio_tokenizer = EncodecModel.encodec_model_24khz().to(device)
             audio_tokenizer.eval()
 
             # Assuming encoded_frames shape is [1, 529, 8]
