@@ -103,28 +103,11 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
             audio_tokenizer = EncodecModel.encodec_model_24khz().to(device)
             audio_tokenizer.eval()
 
-            # Assuming encoded_frames shape is [1, 529, 8]
-            # Reshape encoded_frames correctly
-            encoded_frames_reshaped = encoded_frames.permute(0, 2, 1)  # Now shape [1, 8, 529]
-
-            # Create a proper tuple format as expected by your EnCodec version
-            encoded_tuple = (encoded_frames_reshaped, None)
-
-            # Now decode
-            with torch.no_grad():
-                samples = audio_tokenizer.decode([encoded_tuple])  # Note the list wrapper
-
-            # Process the output
-            audio = samples.squeeze()
-
-            torchaudio.save(audio_path, audio.detach().cpu(), 24000)
-
-
-            # samples = audio_tokenizer.decode(
-            #     [(encoded_frames.transpose(2, 1), None)]
-            # )
+            samples = audio_tokenizer.decode(
+                [(encoded_frames.transpose(2, 1), None)]
+            )
         
-        # torchaudio.save(audio_path, samples[0].detach().cpu(), 24000)
+        torchaudio.save(audio_path, samples[0].detach().cpu(), 24000)
 
 
 
