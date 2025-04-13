@@ -237,7 +237,7 @@ def get_parser():
     parser.add_argument(
         "--accumulate-grad-steps",
         type=int,
-        default=1,
+        default=10,
         help="""update gradient when batch_idx_train %% accumulate_grad_steps == 0.
         """,
     )
