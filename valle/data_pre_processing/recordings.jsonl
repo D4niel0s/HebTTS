@@ -1,6 +1,0 @@
-{"id": "1", "sources": [{"type": "file", "channels": [0], "source": " fake_data/shahar.wav"}], "sampling_rate": 16000, "num_samples": 48000, "duration": 3.0, "channel_ids": [0]}
-{"id": "2", "sources": [{"type": "file", "channels": [0], "source": " fake_data/shaul.wav "}], "sampling_rate": 16000, "num_samples": 80000, "duration": 5.0, "channel_ids": [0]}
-{"id": "3", "sources": [{"type": "file", "channels": [0], "source": " fake_data/shahar.wav"}], "sampling_rate": 16000, "num_samples": 48000, "duration": 3.0, "channel_ids": [0]}
-{"id": "4", "sources": [{"type": "file", "channels": [0], "source": " fake_data/shaul.wav "}], "sampling_rate": 16000, "num_samples": 80000, "duration": 5.0, "channel_ids": [0]}
-{"id": "5", "sources": [{"type": "file", "channels": [0], "source": " fake_data/shahar.wav"}], "sampling_rate": 16000, "num_samples": 48000, "duration": 3.0, "channel_ids": [0]}
-{"id": "6", "sources": [{"type": "file", "channels": [0], "source": " fake_data/shaul.wav "}], "sampling_rate": 16000, "num_samples": 80000, "duration": 5.0, "channel_ids": [0]}
