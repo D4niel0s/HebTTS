@@ -91,7 +91,7 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
         )
 
         print(encoded_frames.shape)
-
+        
         audio_path = f"{output_dir}/sample_{n}.wav"
 
         if args.mbd:
@@ -99,8 +99,11 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
                 encoded_frames.transpose(2, 1)
             )
         else:
+            from encodec import EncodecModel
+            audio_tokenizer = EncodecModel.encodec_model_24khz()
+            
             samples = audio_tokenizer.decode(
-                [(encoded_frames, None)]
+                encoded_frames.transpose(2, 1)
             )
         
         torchaudio.save(audio_path, samples[0].detach().cpu(), 24000)
