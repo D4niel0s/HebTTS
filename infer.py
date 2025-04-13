@@ -127,7 +127,7 @@ def get_args():
     parser.add_argument(
         "--text",
         type=str,
-        default="חג פסח שמח לכל בית ישראל אחים שלנו היקרים",
+        default="ברוכימ הבאימ לפודקאסט עושים היסטוריה",
         help="Text to be synthesized.",
     )
 
