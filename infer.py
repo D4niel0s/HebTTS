@@ -128,7 +128,7 @@ def get_args():
     parser.add_argument(
         "--text",
         type=str,
-        default="ברוכים הבאים לפודדקאסט עושים היסטוריה",
+        default="ברוכים הבאים לפודדקאסט עושים היסטוריה | אני ממש מקווה שהמודל הזה יכליל הרבה הרבה יותר טוב | ואם אתה משפר את איכות החיזוי אתה יכול להציל חיי אדם",
         help="Text to be synthesized.",
     )
 
@@ -156,7 +156,7 @@ def get_args():
     parser.add_argument(
         "--checkpoint",
         type=str,
-        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/valle/exp/valle_dev/checkpoint-10000.pt",
+        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/valle/exp/valle_dev/checkpoint-50000.pt",
         help="Path to the saved checkpoint.",
     )
 
