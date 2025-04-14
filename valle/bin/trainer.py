@@ -132,7 +132,7 @@ def get_parser():
     parser.add_argument(
         "--start-batch",
         type=int,
-        default=10000,
+        default=0,
         help="""If positive, --start-epoch is ignored and
         it loads the checkpoint from exp-dir/checkpoint-{start_batch}.pt
         """,
@@ -224,7 +224,7 @@ def get_parser():
     parser.add_argument(
         "--average-period",
         type=int,
-        default=0,
+        default=3,
         help="""Update the averaged model, namely `model_avg`, after processing
         this number of batches. `model_avg` is a separate version of model,
         in which each floating-point parameter is the average of all the
