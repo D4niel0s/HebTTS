@@ -206,7 +206,7 @@ def get_parser():
     parser.add_argument(
         "--valid-interval",
         type=int,
-        default=30000,
+        default=50000,
         help="""Run validation if batch_idx %% valid_interval is 0.""",
     )
 
