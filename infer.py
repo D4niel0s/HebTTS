@@ -98,11 +98,6 @@ def infer(checkpoint_path, output_dir, texts, prompt_text, prompt_audio, top_k=5
                 encoded_frames.transpose(2, 1)
             )
         else:
-            from encodec import EncodecModel
-            # Load the model
-            audio_tokenizer = EncodecModel.encodec_model_24khz().to(device)
-            audio_tokenizer.eval()
-
             samples = audio_tokenizer.decode(
                 [(encoded_frames.transpose(2, 1), None)]
             )
@@ -133,7 +128,7 @@ def get_args():
     parser.add_argument(
         "--text",
         type=str,
-        default="חג שבועות שמח לכל המאזינים, אם זה מצליח אני פאקינג מלך",
+        default="האם עשינו זאת? אין לדעת. אבל אם כן זה פאקינג ליט",
         help="Text to be synthesized.",
     )
 
@@ -161,7 +156,7 @@ def get_args():
     parser.add_argument(
         "--checkpoint",
         type=str,
-        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/valle/exp/valle_dev/trash/checkpoint-50000.pt",
+        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/valle/exp/valle_dev/trash/checkpoint-10000.pt",
         help="Path to the saved checkpoint.",
     )
 
