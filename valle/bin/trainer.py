@@ -427,7 +427,10 @@ def load_checkpoint_if_available(
                 dst=params.exp_dir / f"best-valid-loss-stage{saved_stage}.pt",
             )
     else:
-
+        for key in ["scheduler"]:
+            if key in saved_params:
+                saved_params.pop(key)
+                
         keys = [
             "best_train_epoch",
             "best_valid_epoch",
