@@ -11,11 +11,11 @@ shaul:
   audio-prompt: "shaul.wav"
 
 arbaby:
-  text-prompt: "ואת קמואל אבי ארם ואת קשוד ואת חזו"
+  text-prompt: "את עוץ בכורו ואת בוז אחיו, ואז קמואל אבי ארם ואת קשוד ואת חזו, ואת פילדש את ידלף, ואת בתואל."
   audio-prompt: "Arbaby.wav"
 
 mark:
-  text-prompt: "הפלתי את כל הסופגניות שלי שוב מה אני אעס"
+  text-prompt: "אוי לא! הפלתי את כל הסופגניות שלי שוב. מה אני אעשה? כל חנוכה זה קורה לי"
   audio-prompt: "Mark.wav"
 
 induction_hater:
