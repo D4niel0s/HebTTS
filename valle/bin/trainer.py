@@ -132,7 +132,7 @@ def get_parser():
     parser.add_argument(
         "--start-batch",
         type=int,
-        default=0,
+        default=150000,
         help="""If positive, --start-epoch is ignored and
         it loads the checkpoint from exp-dir/checkpoint-{start_batch}.pt
         """,
@@ -430,7 +430,7 @@ def load_checkpoint_if_available(
         for key in ["scheduler"]:
             if key in saved_params:
                 saved_params.pop(key)
-                
+
         keys = [
             "best_train_epoch",
             "best_valid_epoch",
