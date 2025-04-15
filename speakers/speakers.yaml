@@ -15,7 +15,7 @@ arbaby:
   audio-prompt: "Arbaby.wav"
 
 mark:
-  text-prompt: "אוי לא! הפלתי את כל הסופגניות שלי שוב. מה אני אעשה? כל חנוכה זה קורה לי"
+  text-prompt: "אוי לא. הפלתי את כל הסופגניות שלי שוב. מה אני אעשה, כל חנוכה זה קורה לי"
   audio-prompt: "Mark.wav"
 
 induction_hater:
