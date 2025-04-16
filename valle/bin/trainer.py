@@ -164,10 +164,10 @@ def get_parser():
         "--base-lr", type=float, default=0.05, help="The base learning rate."
     )
     parser.add_argument(
-        "--lr-batches", type=float, default=0.05, help="The base learning rate of the batch."
+        "--lr-batches", type=float, default=5000, help="The base learning rate of the batch."
     )
     parser.add_argument(
-        "--lr-epochs", type=float, default=0.05, help="The base learning rate of the batch."
+        "--lr-epochs", type=float, default=6, help="The base learning rate of the batch."
     )
     parser.add_argument(
         "--warmup-steps",
