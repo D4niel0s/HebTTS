@@ -122,7 +122,7 @@ def get_parser():
     parser.add_argument(
         "--start-epoch",
         type=int,
-        default=4,
+        default=6,
         help="""Resume training from this epoch. It should be positive.
         If larger than 1, it will load checkpoint from
         exp-dir/epoch-{start_epoch-1}.pt
@@ -132,7 +132,7 @@ def get_parser():
     parser.add_argument(
         "--start-batch",
         type=int,
-        default=0,
+        default=300000,
         help="""If positive, --start-epoch is ignored and
         it loads the checkpoint from exp-dir/checkpoint-{start_batch}.pt
         """,
@@ -206,7 +206,7 @@ def get_parser():
     parser.add_argument(
         "--valid-interval",
         type=int,
-        default=25000,
+        default=50000,
         help="""Run validation if batch_idx %% valid_interval is 0.""",
     )
 
