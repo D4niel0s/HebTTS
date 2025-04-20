@@ -18,6 +18,10 @@ mark:
   text-prompt: "אוי לא. הפלתי את כל הסופגניות שלי שוב. מה אני אעשה, כל חנוכה זה קורה לי"
   audio-prompt: "Mark.wav"
 
+reemos:
+  text-prompt: "לפני ארבעה ימים, נגמר חופש פסח. אז יש סיכוי, יש סיכוי די טוב, שאתמול ראיתי בדואי"
+  audio-prompt: "Reemos.wav"
+
 daniel:
   text-prompt: "אני ממש מקווה שאשכרה נצליח עם הדבר הזה, כי זה ממש ממש מגניב"
   audio-prompt: "Daniel.wav"
@@ -25,3 +29,5 @@ daniel:
 induction_hater:
   text-prompt: "שוב אינדוקציה? לא לא לא לא לא תעיפו את האינדוקציה קיבינימט צריך לשרוף את המושג הזה שנקרא אינדוקציה"
   audio-prompt: "Induction_Hater.wav"
+
+
