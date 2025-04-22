@@ -132,7 +132,7 @@ def get_parser():
     parser.add_argument(
         "--start-batch",
         type=int,
-        default=800000,
+        default=200000,
         help="""If positive, --start-epoch is ignored and
         it loads the checkpoint from exp-dir/checkpoint-{start_batch}.pt
         """,
@@ -161,13 +161,13 @@ def get_parser():
         help="The scheduler.",
     )
     parser.add_argument(
-        "--base-lr", type=float, default=0.05, help="The base learning rate."
+        "--base-lr", type=float, default=0.03, help="The base learning rate."
     )
     parser.add_argument(
-        "--lr-batches", type=float, default=5000, help="The base learning rate of the batch."
+        "--lr-batches", type=float, default=4000, help="The base learning rate of the batch."
     )
     parser.add_argument(
-        "--lr-epochs", type=float, default=6, help="The base learning rate of the batch."
+        "--lr-epochs", type=float, default=1, help="The base learning rate of the batch."
     )
     parser.add_argument(
         "--warmup-steps",
@@ -206,14 +206,14 @@ def get_parser():
     parser.add_argument(
         "--valid-interval",
         type=int,
-        default=50000,
+        default=10000,
         help="""Run validation if batch_idx %% valid_interval is 0.""",
     )
 
     parser.add_argument(
         "--keep-last-k",
         type=int,
-        default=6,
+        default=10,
         help="""Only keep this number of checkpoints on disk.
         For instance, if it is 3, there are only 3 checkpoints
         in the exp-dir with filenames `checkpoint-xxx.pt`.
@@ -265,7 +265,7 @@ def get_parser():
     parser.add_argument(
         "--train-stage",
         type=int,
-        default=2,
+        default=1,
         help="""0: train all modules, For VALL-E, support 1: AR Decoder 2: NAR Decoder(s)
         """,
     )
