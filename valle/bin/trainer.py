@@ -161,10 +161,10 @@ def get_parser():
         help="The scheduler.",
     )
     parser.add_argument(
-        "--base-lr", type=float, default=0.03, help="The base learning rate."
+        "--base-lr", type=float, default=0.003, help="The base learning rate."
     )
     parser.add_argument(
-        "--lr-batches", type=float, default=4000, help="The base learning rate of the batch."
+        "--lr-batches", type=float, default=5000, help="The base learning rate of the batch."
     )
     parser.add_argument(
         "--lr-epochs", type=float, default=1, help="The base learning rate of the batch."
