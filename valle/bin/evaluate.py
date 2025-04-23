@@ -15,6 +15,7 @@ import argparse
 from pathlib import Path
 import whisper
 import yaml
+import tqdm
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -152,13 +153,14 @@ def main(model,
     speakers_file = str(Path(args.speakers_path) / 'speakers.yaml')
     with open(speakers_file, 'r', encoding='utf-8') as file:
         data = yaml.safe_load(file)
-
-    for speaker, content in data.items():
+    total_wer = []
+    total_cer = []
+    for speaker, content in tqdm(data.items()):
         calculated_wer = []
         calculated_cer = []
         # audio_prompt = torchaudio.load(str(Path(args.speakers_path)/content["audio-prompt"]))[0]
         text_prompt = content["text-prompt"]
-        for text in texts:
+        for text in tqdm(texts, leave=False):
             try:
                 sample = infer(
                     model,
@@ -177,15 +179,15 @@ def main(model,
             norm_ref = norm(text)
             sample = sample.squeeze(0)
             norm_hyp = norm((whisper_model.transcribe(sample, language="he"))['text'])
-            print(f"ref: {norm_ref}")
-            print(f"hyp: {norm_hyp}")
             calculated_wer.append(wer((" ").join(norm_ref), (" ").join(norm_hyp)))
             calculated_cer.append(cer((" ").join(norm_ref), (" ").join(norm_hyp)))
-            print(f"wer: {calculated_wer[-1]}")
-            print(f"cer: {calculated_cer[-1]}")
         print(f"speaker: {speaker}")
         print(f"wer: {sum(calculated_wer) / len(calculated_wer)}")
         print(f"cer: {sum(calculated_cer) / len(calculated_cer)}")
+        total_wer.append(sum(calculated_wer) / len(calculated_wer))
+        total_cer.append(sum(calculated_cer) / len(calculated_cer))
+    print(f"total wer: {sum(total_wer) / len(total_wer)}")
+    print(f"total cer: {sum(total_cer) / len(total_cer)}")
             
 if __name__ == "__main__":
     # parse some args 
