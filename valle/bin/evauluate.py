@@ -39,7 +39,7 @@ def get_args():
     parser.add_argument(
         "--text",
         type=str,
-        default="ברוכים הבאים לפודקאסט עושים היסטוריה וחג פסח שמח לכל עם ישראל",
+        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/valle/bin/sentences_for_eval.txt",
         help="Text to be synthesized.",
     )
 
@@ -67,7 +67,7 @@ def get_args():
     parser.add_argument(
         "--checkpoint",
         type=str,
-        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/valle/exp/valle_dev/checkpoint-40000.pt",
+        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/valle/exp/valle_dev/checkpoint-150000.pt",
         help="Path to the saved checkpoint.",
     )
 
@@ -95,7 +95,7 @@ def get_args():
     parser.add_argument(
         "--whisper-path",
         type=str,
-        default="/home/yandex/APDL2425a/group_6/Documents/whisper-large-v2",
+        default="/home/yandex/APDL2425a/group_6/large-v2.pt",
         help="Path to the whisper model.",
     )
 
@@ -203,14 +203,6 @@ def main(model,
 if __name__ == "__main__":
     # parse some args 
     args = get_args()
-    speaker_yaml = OmegaConf.load(args.speaker_yaml)
-
-    try:
-        speaker = speaker_yaml[args.speaker]
-    except:
-        print(f"Invalid speaker {args.speaker}. Should be defined at speakers.yaml.")
-
-    audio_prompt = str(Path(args.speaker_yaml).parent / speaker["audio-prompt"])
 
     device = torch.device("cpu")
     if torch.cuda.is_available():
