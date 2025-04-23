@@ -26,7 +26,7 @@ def get_args():
     return parser.parse_args()
 
 
-def load_daniels_shitty_csv(path):
+def load_csv(path):
     df = pd.read_csv(path, sep='|')
     print(df.head())
     return df
@@ -35,7 +35,7 @@ def load_daniels_shitty_csv(path):
 def main():
     args = get_args()
     
-    df = load_daniels_shitty_csv(args.src_path)
+    df = load_csv(args.src_path)
     sample_rate = 16000
 
     
