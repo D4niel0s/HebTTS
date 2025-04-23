@@ -95,7 +95,7 @@ def infer(model,
     if torch.cuda.is_available():
         device = torch.device("cuda", 0)
     audio_prompts = list()
-    encoded_frames = tokenize_audio(audio_tokenizer, prompt_audio)
+    encoded_frames = tokenize_audio(audio_tokenizer, str(Path(args.speakers_path)/content["audio-prompt"]))
 
     audio_prompts.append(encoded_frames[0][0])
     audio_prompts = torch.concat(audio_prompts, dim=-1).transpose(2, 1)
