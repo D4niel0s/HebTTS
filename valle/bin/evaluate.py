@@ -6,7 +6,7 @@ from omegaconf import OmegaConf
 from valle.data.collation import get_text_token_collater
 from valle.data.hebrew_normalizer import HebrewNormalizer
 from valle.data.hebrew_root_tokenizer import AlefBERTRootTokenizer, replace_chars
-from valle.data.tokenizer import tokenize_audio
+from valle.data.tokenizer import AudioTokenizer, tokenize_audio
 import os
 import torch
 import torchaudio
@@ -84,6 +84,7 @@ def get_args():
 
 def infer(model,
           audio_tokenizer,
+          text_collater,
             text,
             prompt_text,
             prompt_audio,
@@ -140,6 +141,7 @@ def infer(model,
 
 def main(model,
          audio_tokenizer,
+         text_collater,
          whisper_model,
          texts,
          top_k,
@@ -159,6 +161,7 @@ def main(model,
             sample = infer(
                 model,
                 audio_tokenizer,
+                text_collater,
                 text,
                 text_prompt,
                 audio_prompt,
@@ -190,14 +193,15 @@ if __name__ == "__main__":
     alef_bert_tokenizer = AlefBERTRootTokenizer(vocab_file=args.vocab_file)
     whisper_model = whisper.load_model(args.whisper_path)
     whisper_model.to(device)
-    
+    audio_tokenizer = AudioTokenizer(mbd=args.mbd)
     if os.path.exists(args.text):
         with open(args.text, 'r') as f:
             texts = f.readlines()
     
     main(
         model=model,
-        text_tokenizer=text_collater,
+        audio_tokenizer=audio_tokenizer,
+        text_collater=text_collater,
         whisper_model=whisper_model,
         texts=texts,
         top_k=args.top_k,
