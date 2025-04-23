@@ -155,7 +155,7 @@ def main(model,
     for speaker, content in data.items():
         calculated_wer = []
         calculated_cer = []
-        audio_prompt = torchaudio.load(str(Path(args.speakers_path)/content["audio-prompt"]))[0]
+        # audio_prompt = torchaudio.load(str(Path(args.speakers_path)/content["audio-prompt"]))[0]
         text_prompt = content["text-prompt"]
         for text in texts:
             sample = infer(
@@ -164,7 +164,7 @@ def main(model,
                 text_collater,
                 text,
                 text_prompt,
-                audio_prompt,
+                content["audio_prompt"],
                 top_k=top_k,
                 temperature=temperature,
                 args=args
