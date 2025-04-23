@@ -169,7 +169,7 @@ def main(model,
                 temperature=temperature,
                 args=args
             )
-            norm_ref = norm(sample.text)
+            norm_ref = norm(text)
             norm_hyp = norm(whisper_model.transcribe(sample, language="he"))
             calculated_wer.append(wer(norm_ref, norm_hyp))
             calculated_cer.append(cer(norm_ref, norm_hyp))
