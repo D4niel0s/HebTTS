@@ -173,6 +173,8 @@ def main(model,
             norm_ref = norm(text)
             sample = sample.squeeze(0)
             norm_hyp = norm((whisper_model.transcribe(sample, language="he"))['text'])
+            print(f"ref: {norm_ref}")
+            print(f"hyp: {norm_hyp}")
             calculated_wer.append(wer(norm_ref, norm_hyp))
             calculated_cer.append(cer(norm_ref, norm_hyp))
             print(f"wer: {calculated_wer[-1]}")
