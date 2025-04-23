@@ -2,13 +2,14 @@ osim:
   text-prompt: "אני משתדל מאוד שכל חסות תהיה מיוחדת ושונה"
   audio-prompt: "osim.wav"
 
-geek:
-  text-prompt: "מביא הרבה מהסיבות"
-  audio-prompt: "geek.wav"
-
 shaul:
   text-prompt: "ובשביל להבין למה מחיר הדלק כל כך עלה, צריך לחזור שנתיים אחורנית."
   audio-prompt: "shaul.wav"
+
+
+geek:
+  text-prompt: "מביא הרבה מהסיבות"
+  audio-prompt: "geek.wav"
 
 arbaby:
   text-prompt: "מחר נגמר חופש פסח ואני חוזר לאוניברסיטה. אז יש סיכוי טוב, אמ, סיכוי לא כזה טוב האמת אבל סיכוי כל שהוא שבזמן הקרוב אני אראה שוב את הבני ברקים"
