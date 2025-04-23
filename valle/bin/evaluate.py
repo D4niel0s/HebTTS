@@ -7,6 +7,7 @@ from valle.data.collation import get_text_token_collater
 from valle.data.hebrew_normalizer import HebrewNormalizer
 from valle.data.hebrew_root_tokenizer import AlefBERTRootTokenizer, replace_chars
 from valle.data.tokenizer import AudioTokenizer, tokenize_audio
+import librosa
 import os
 import torch
 import torchaudio
@@ -158,7 +159,7 @@ def main(model,
         # audio_prompt = torchaudio.load(str(Path(args.speakers_path)/content["audio-prompt"]))[0]
         text_prompt = content["text-prompt"]
         for text in texts:
-            sample = infer(
+            sample, sr = infer(
                 model,
                 audio_tokenizer,
                 text_collater,
@@ -170,7 +171,8 @@ def main(model,
                 args=args
             )
             norm_ref = norm(text)
-            norm_hyp = norm(whisper_model.transcribe(whisper.audio.load_audio(sample), language="he"))
+            sample = librosa.resample(sample,24000 , 16000)
+            norm_hyp = norm(whisper_model.transcribe(sample, language="he"))
             calculated_wer.append(wer(norm_ref, norm_hyp))
             calculated_cer.append(cer(norm_ref, norm_hyp))
             print(f"wer: {calculated_wer[-1]}")
