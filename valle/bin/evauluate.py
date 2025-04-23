@@ -21,14 +21,6 @@ import yaml
 
 def get_args():
     parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "--speaker",
-        type=str,
-        default="geek",
-        help="A speaker from speakers.yaml",
-    )
-
     parser.add_argument(
         "--mbd",
         type=bool,
@@ -41,13 +33,6 @@ def get_args():
         type=str,
         default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/valle/bin/sentences_for_eval.txt",
         help="Text to be synthesized.",
-    )
-
-    parser.add_argument(
-        "--speaker-yaml",
-        type=str,
-        default="/home/yandex/APDL2425a/group_6/Documents/HebTTS/speakers/speakers.yaml",
-        help="speaker yaml path",
     )
 
     parser.add_argument(
@@ -72,16 +57,9 @@ def get_args():
     )
 
     parser.add_argument(
-        "--output-dir",
-        type=Path,
-        default="/home/yandex/APDL2425a/group_6/Documents/output_wavs",
-        help="Output directory to save the synthesized audio.",
-    )
-
-    parser.add_argument(
         "--top-k",
         type=int,
-        default=60,
+        default=50,
         help="top k sampling",
     )
 
