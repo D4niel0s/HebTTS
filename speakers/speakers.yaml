@@ -29,5 +29,3 @@ daniel:
 induction_hater:
   text-prompt: "שוב אינדוקציה? לא לא לא לא לא תעיפו את האינדוקציה קיבינימט צריך לשרוף את המושג הזה שנקרא אינדוקציה"
   audio-prompt: "Induction_Hater.wav"
-
-
