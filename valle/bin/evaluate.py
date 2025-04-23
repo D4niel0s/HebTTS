@@ -164,7 +164,7 @@ def main(model,
                 text_collater,
                 text,
                 text_prompt,
-                content["audio_prompt"],
+                content["audio-prompt"],
                 top_k=top_k,
                 temperature=temperature,
                 args=args
