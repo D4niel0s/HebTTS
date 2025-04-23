@@ -170,7 +170,7 @@ def main(model,
                 args=args
             )
             norm_ref = norm(text)
-            norm_hyp = norm(whisper_model.transcribe(sample, language="he"))
+            norm_hyp = norm(whisper_model.transcribe(whisper.audio.load_audio(sample), language="he"))
             calculated_wer.append(wer(norm_ref, norm_hyp))
             calculated_cer.append(cer(norm_ref, norm_hyp))
             print(f"wer: {calculated_wer[-1]}")
