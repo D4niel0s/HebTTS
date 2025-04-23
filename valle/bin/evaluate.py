@@ -171,7 +171,7 @@ def main(model,
                 args=args
             )
             norm_ref = norm(text)
-            sample = librosa.resample(sample.detach().cpu().numpy(), orig_sr=24000, target_sr=16000)
+            sample = sample.squeeze(0)
             norm_hyp = norm(whisper_model.transcribe(sample, language="he"))
             calculated_wer.append(wer(norm_ref, norm_hyp))
             calculated_cer.append(cer(norm_ref, norm_hyp))
