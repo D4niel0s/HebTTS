@@ -1,23 +1,19 @@
 import argparse
 from jiwer import wer, cer
-from typing import List
 from pathlib import Path
 from infer import load_model
 from omegaconf import OmegaConf
 from valle.data.collation import get_text_token_collater
-from valle.data.datamodule import TtsDataModule
 from valle.data.hebrew_normalizer import HebrewNormalizer
 from valle.data.hebrew_root_tokenizer import AlefBERTRootTokenizer, replace_chars
-from valle.data.tokenizer import AudioTokenizer, tokenize_audio
+from valle.data.tokenizer import tokenize_audio
 import os
 import torch
 import torchaudio
-from omegaconf import OmegaConf
 import argparse
 from pathlib import Path
 import whisper
 import yaml
-
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -174,6 +170,8 @@ def main(model,
             norm_hyp = norm(whisper_model.transcribe(sample, language="he"))
             calculated_wer.append(wer(norm_ref, norm_hyp))
             calculated_cer.append(cer(norm_ref, norm_hyp))
+            print(f"wer: {calculated_wer[-1]}")
+            print(f"cer: {calculated_cer[-1]}")
         print(f"speaker: {speaker}")
         print(f"wer: {sum(calculated_wer) / len(calculated_wer)}")
         print(f"cer: {sum(calculated_cer) / len(calculated_cer)}")
