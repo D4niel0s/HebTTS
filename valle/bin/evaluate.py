@@ -159,7 +159,7 @@ def main(model,
         # audio_prompt = torchaudio.load(str(Path(args.speakers_path)/content["audio-prompt"]))[0]
         text_prompt = content["text-prompt"]
         for text in texts:
-            sample, sr = infer(
+            sample = infer(
                 model,
                 audio_tokenizer,
                 text_collater,
