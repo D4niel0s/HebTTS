@@ -159,17 +159,21 @@ def main(model,
         # audio_prompt = torchaudio.load(str(Path(args.speakers_path)/content["audio-prompt"]))[0]
         text_prompt = content["text-prompt"]
         for text in texts:
-            sample = infer(
-                model,
-                audio_tokenizer,
-                text_collater,
-                text,
-                text_prompt,
-                content["audio-prompt"],
-                top_k=top_k,
-                temperature=temperature,
-                args=args
-            )
+            try:
+                sample = infer(
+                    model,
+                    audio_tokenizer,
+                    text_collater,
+                    text,
+                    text_prompt,
+                    content["audio-prompt"],
+                    top_k=top_k,
+                    temperature=temperature,
+                    args=args
+                )
+            except Exception as e:
+                print(f"Error: {e}")
+                continue
             norm_ref = norm(text)
             sample = sample.squeeze(0)
             norm_hyp = norm((whisper_model.transcribe(sample, language="he"))['text'])
